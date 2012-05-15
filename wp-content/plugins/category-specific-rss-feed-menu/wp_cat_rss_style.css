@@ -1,0 +1,18 @@
+/* If you want to customize how the category specific RSS display looks then add your CSS code here*/
+#cat_specific_rss{
+
+}
+#cat_specific_rss img{
+padding:0px;
+margin:0px 2px 0px 2px;
+border:none;
+}
+#cat_specific_rss img a{
+padding:0px;
+margin:0px 2px 0px 2px;
+border:none;
+}
+.cat_specific_rss_link{
+font-size:8pt;
+margin:5px 5px 5px 20px;
+}

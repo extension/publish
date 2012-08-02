@@ -1,7 +1,7 @@
 /*
-Theme Name: eXtension
+Theme Name: eXtension compact
 Theme URI: http://extension.org/
-Description: The default eXtension theme.
+Description: eXtension theme with compact header.
 Version: 0.1
 Author: Ivelin Denev
 Author URI: http://extension.org/
@@ -11,7 +11,7 @@ Tags: orange, custom header, fixed width, two columns, widgets
 	 http://extension.org/
 
 	This theme was designed and built by eXtension,
-	whose blog you will find at http://blogs.extension.org/
+	whose blog you will find at http://tools.extension.org/blogs/main
 
 	The CSS, XHTML and design is released under GPL:
 	http://www.opensource.org/licenses/gpl-license.php
@@ -266,13 +266,13 @@ body {
 	/* background-color: #fff; */
 	margin: 0px;
 	padding: 0;
-	height: 340px;
+	height: 240px;
 	width: 958px;
 	}
 
 #headerimg {
 	
-	margin: 0px 0px 193px 0px;
+	margin: 0px 0px 93px 0px;
 	height: 112px;
 	background-image:url(images/eXtension_logo.png);
 	background-repeat:no-repeat;
@@ -855,8 +855,9 @@ color: white;
 .ddsmoothmenu ul li a:hover{
 	
 	background: #c05412 url(images/navbarbgnd_rotated.gif) repeat-x;
-	background-color: #eeac7b; /* background of menu items during onmouseover (hover state)*/
-	color: white;
+	/*
+background: #b04c0f; background of menu items during onmouseover (hover state)*/
+color: white;
 }
 	
 /*1st sub level menu*/

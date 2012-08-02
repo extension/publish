@@ -68,15 +68,15 @@ $(document).ready(function() {
 </head>
 <body <?php body_class(); ?>>
 <ul id="extensionNav">
-        <li style="padding-left: 10px; background-image:url(<?php echo $im_dir; ?>ex_logo_header.gif); background-repeat:no-repeat;"><a href="http://www.extension.org/">Public Site</a></li>
+        <li><a href="http://www.extension.org/">Public Site</a></li>
 
-        <li><a href="https://www.extension.org/main/about">About !</a></li>
-        <li><a href="https://www.extension.org/main/communities">Resource Areas</a></li>
-        <li><a href="https://www.extension.org/all/news">News</a></li>
-        <li><a href="https://www.extension.org/all/articles">Articles</a></li>
-        <li><a href="https://www.extension.org/all/faqs">Answers</a></li>
-        <li><a href="https://www.extension.org/all/events">Calendar</a></li>
-		<li><a href="https://www.extension.org/all/learning_lessons">Learning Lessons</a></li>
+        <li><a href="http://about.extension.org/">About.extension</a></li>
+        <li><a href="http://about.extension.org/wiki">About Wiki</a></li>
+        <li><a href="http://cop.extension.org/wiki">CoP Wiki</a></li>
+        <li><a href="http://people.extension.org">People.extension</a></li>
+        <li><a href="http://faq.extension.org">FAQ.extension</a></li>
+        <li><a href="http://events.extension.org">Events.extension</a></li>
+
 </ul>
 <div id="page">
 

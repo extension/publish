@@ -4,11 +4,13 @@
  * @subpackage Default_Theme
  */
 ?>
+
+<?php $current_site = get_current_site(); ?>
 <hr />
 
 <div id="footer">
     <p>eXtension is an educational partnership of 74 universities providing objective and research-based information that help people improve their lives.</p>
-    <p class="copyright">&copy; 2012 eXtension. All rights reserved.</p>
+    <p class="copyright">&copy; 2009 eXtension. All rights reserved.</p>
     <ul>
         <li><a href="http://www.extension.org/main/partners">partners</a></li>
         <li><a href="http://www.extension.org/main/privacy">privacy</a></li>
@@ -19,6 +21,9 @@
 </div>
 
 </div>
+
+<?php /* "Just what do you think you're doing Dave?" */ ?>
+
 		<?php wp_footer(); ?>
 </body>
 </html>

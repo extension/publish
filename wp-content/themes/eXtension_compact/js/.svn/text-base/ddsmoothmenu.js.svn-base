@@ -16,7 +16,7 @@
 var ddsmoothmenu={
 
 //Specify full URL to down and right arrow images (23 is padding-right added to top level LIs with drop downs):
-arrowimages: {down:['downarrowclass', 'http://tools.extension.org/blogs/contentstaff/wp-content/themes/eXtension/images/down.gif', 23], right:['rightarrowclass', 'http://tools.extension.org/blogs/contentstaff/wp-content/themes/eXtension/images/right.gif']},
+arrowimages: {down:['downarrowclass', 'http://blogs.extension.org/contentstaff/wp-content/themes/eXtension/images/down.gif', 23], right:['rightarrowclass', 'http://blogs.extension.org/contentstaff/wp-content/themes/eXtension/images/right.gif']},
 
 transition: {overtime:300, outtime:300}, //duration of slide in/ out animation, in milliseconds
 shadow: {enable:true, offsetx:5, offsety:5},

@@ -70,7 +70,7 @@ $(document).ready(function() {
 <ul id="extensionNav">
         <li style="padding-left: 10px; background-image:url(<?php echo $im_dir; ?>ex_logo_header.gif); background-repeat:no-repeat;"><a href="http://www.extension.org/">Public Site</a></li>
 
-        <li><a href="https://www.extension.org/main/about">About !</a></li>
+        <li><a href="https://www.extension.org/main/about">About</a></li>
         <li><a href="https://www.extension.org/main/communities">Resource Areas</a></li>
         <li><a href="https://www.extension.org/all/news">News</a></li>
         <li><a href="https://www.extension.org/all/articles">Articles</a></li>

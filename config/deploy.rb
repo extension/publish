@@ -27,8 +27,9 @@ namespace :deploy do
   task :link_and_copy_configs, :roles => :app do
     run <<-CMD
     rm -rf #{release_path}/wp-config.php &&
+    ln -nfs /services/config/#{application}/.htaccess #{release_path}/.htaccess &&
     ln -nfs /services/config/#{application}/wp-config.php #{release_path}/wp-config.php &&
-    ln -nfs /services/config/#{application}/robots.txt #{release_path}/robots.txt
+    ln -nfs /services/config/#{application}/robots.txt #{release_path}/robots.txt &&
     rm -rf #{release_path}/wp-content/blogs.dir &&
     ln -nfs /services/wordpress/blogs.extension.org/blogs.dir #{release_path}/wp-content/blogs.dir
     CMD

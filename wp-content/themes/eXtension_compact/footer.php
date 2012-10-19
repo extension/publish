@@ -9,7 +9,7 @@
 <hr />
 
 <div id="footer">
-    <p>eXtension is an educational partnership of 74 universities providing objective and research-based information that help people improve their lives.</p>
+    <p>eXtension provides objective and research-based information and learning opportunities that help people improve their lives. eXtension is a critical part of the Cooperative Extension System and an educational partner of 75 land-grant universities in the United States.</p>
     <p class="copyright">&copy; 2012 eXtension. All rights reserved.</p>
     <ul>
         <li><a href="http://www.extension.org/main/partners">partners</a></li>

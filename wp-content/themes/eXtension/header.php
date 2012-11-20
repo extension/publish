@@ -67,6 +67,8 @@ $(document).ready(function() {
 
 </head>
 <body <?php body_class(); ?>>
+<?php
+/*
 <ul id="extensionNav">
         <li style="padding-left: 10px; background-image:url(<?php echo $im_dir; ?>ex_logo_header.gif); background-repeat:no-repeat;"><a href="http://www.extension.org/">Public Site</a></li>
 
@@ -78,6 +80,8 @@ $(document).ready(function() {
         <li><a href="https://www.extension.org/all/events">Calendar</a></li>
 		<li><a href="https://www.extension.org/all/learning_lessons">Learning Lessons</a></li>
 </ul>
+*/
+?>
 <div id="page">
 
 

@@ -192,11 +192,7 @@ function wp_default_scripts( &$scripts ) {
 
 	$scripts->add( 'jcrop', "/wp-includes/js/jcrop/jquery.Jcrop.min.js", array('jquery'), '0.9.10');
 
-<<<<<<< HEAD
-	$scripts->add( 'swfobject', "/wp-includes/js/swfobject.js", false, '2.2-20120417');
-=======
 	$scripts->add( 'swfobject', "/wp-includes/js/swfobject.js", array(), '2.2-20120417');
->>>>>>> 3.5.1
 
 	// common bits for both uploaders
 	$max_upload_size = ( (int) ( $max_up = @ini_get('upload_max_filesize') ) < (int) ( $max_post = @ini_get('post_max_size') ) ) ? $max_up : $max_post;

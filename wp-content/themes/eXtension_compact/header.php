@@ -67,21 +67,7 @@ $(document).ready(function() {
 
 </head>
 <body <?php body_class(); ?>>
-<?php
-/*
-<ul id="extensionNav">
-        <li style="padding-left: 10px; background-image:url(<?php echo $im_dir; ?>ex_logo_header.gif); background-repeat:no-repeat;"><a href="http://www.extension.org/">Public Site</a></li>
-
-        <li><a href="https://www.extension.org/main/about">About !</a></li>
-        <li><a href="https://www.extension.org/main/communities">Resource Areas</a></li>
-        <li><a href="https://www.extension.org/all/news">News</a></li>
-        <li><a href="https://www.extension.org/all/articles">Articles</a></li>
-        <li><a href="https://www.extension.org/all/faqs">Answers</a></li>
-        <li><a href="https://www.extension.org/all/events">Calendar</a></li>
-		<li><a href="https://www.extension.org/all/learning_lessons">Learning Lessons</a></li>
-</ul>
-*/
-?>
+<script src="https://www.extension.org/javascripts/global_nav_internal.js" type="text/javascript"></script>
 <div id="page">
 
 

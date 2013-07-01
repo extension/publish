@@ -176,6 +176,10 @@ function wp_popular_terms_checklist( $taxonomy, $default = 0, $number = 10, $ech
 	$terms = get_terms( $taxonomy, array( 'orderby' => 'count', 'order' => 'DESC', 'number' => $number, 'hierarchical' => false ) );
 
 	$tax = get_taxonomy($taxonomy);
+	if ( ! current_user_can($tax->cap->assign_terms) )
+		$disabled = 'disabled="disabled"';
+	else
+		$disabled = '';
 
 	$popular_ids = array();
 	foreach ( (array) $terms as $term ) {
@@ -188,7 +192,7 @@ function wp_popular_terms_checklist( $taxonomy, $default = 0, $number = 10, $ech
 
 		<li id="<?php echo $id; ?>" class="popular-category">
 			<label class="selectit">
-			<input id="in-<?php echo $id; ?>" type="checkbox" <?php echo $checked; ?> value="<?php echo (int) $term->term_id; ?>" <?php disabled( ! current_user_can( $tax->cap->assign_terms ) ); ?> />
+			<input id="in-<?php echo $id; ?>" type="checkbox" <?php echo $checked; ?> value="<?php echo (int) $term->term_id; ?>" <?php echo $disabled ?>/>
 				<?php echo esc_html( apply_filters( 'the_category', $term->name ) ); ?>
 			</label>
 		</li>
@@ -676,7 +680,7 @@ function parent_dropdown( $default = 0, $parent = 0, $level = 0 ) {
 	if ( $items ) {
 		foreach ( $items as $item ) {
 			// A page cannot be its own parent.
-			if ( $post && $post->ID && $item->ID == $post->ID )
+			if ( $post->ID && $item->ID == $post->ID )
 				continue;
 
 			$pad = str_repeat( '&nbsp;', $level * 3 );
@@ -776,7 +780,7 @@ function wp_dropdown_roles( $selected = false ) {
  */
 function wp_import_upload_form( $action ) {
 	$bytes = apply_filters( 'import_upload_size_limit', wp_max_upload_size() );
-	$size = size_format( $bytes );
+	$size = wp_convert_bytes_to_hr( $bytes );
 	$upload_dir = wp_upload_dir();
 	if ( ! empty( $upload_dir['error'] ) ) :
 		?><div class="error"><p><?php _e('Before you can upload your import file, you will need to fix the following error:'); ?></p>
@@ -807,7 +811,6 @@ function wp_import_upload_form( $action ) {
  * @param string|object $screen Optional. The screen on which to show the box (post, page, link). Defaults to current screen.
  * @param string $context Optional. The context within the page where the boxes should show ('normal', 'advanced').
  * @param string $priority Optional. The priority within the context where the boxes should show ('high', 'low').
- * @param array $callback_args Optional. Data that should be set as the "args" property of the box array (which is the second parameter passed to your callback).
  */
 function add_meta_box( $id, $title, $callback, $screen = null, $context = 'advanced', $priority = 'default', $callback_args = null ) {
 	global $wp_meta_boxes;
@@ -1331,7 +1334,7 @@ function _draft_or_post_title( $post = 0 ) {
  *
  */
 function _admin_search_query() {
-	echo isset($_REQUEST['s']) ? esc_attr( wp_unslash( $_REQUEST['s'] ) ) : '';
+	echo isset($_REQUEST['s']) ? esc_attr( stripslashes( $_REQUEST['s'] ) ) : '';
 }
 
 /**
@@ -1450,6 +1453,8 @@ function _post_states($post) {
 		}
 	}
 
+	if ( get_post_format( $post->ID ) )
+		echo ' - <span class="post-state-format">' . get_post_format_string( get_post_format( $post->ID ) ) . '</span>';
 }
 
 function _media_states( $post ) {

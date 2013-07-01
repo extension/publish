@@ -46,7 +46,6 @@ require(ABSPATH . WPINC . '/version.php');
 
 // Check for the required PHP version and for the MySQL extension or a database drop-in.
 wp_check_php_mysql_versions();
-wp_unregister_GLOBALS();
 
 require_once(ABSPATH . WPINC . '/functions.php');
 

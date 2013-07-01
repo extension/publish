@@ -536,6 +536,8 @@ $_old_files = array(
 'wp-includes/js/jquery/ui/jquery.effects.transfer.min.js',
 'wp-includes/js/jquery/ui/jquery.effects.fold.min.js',
 'wp-admin/options-privacy.php',
+// 3.5.2
+'wp-includes/js/swfupload/swfupload-all.js',
 );
 
 /**
@@ -644,7 +646,6 @@ function update_core($from, $to) {
 
 	$php_version    = phpversion();
 	$mysql_version  = $wpdb->db_version();
-
 	$old_wp_version = $GLOBALS['wp_version']; // The version of WordPress we're updating from
 	$development_build = ( false !== strpos( $old_wp_version . $wp_version, '-' )  ); // a dash in the version indicates a Development release
 	$php_compat     = version_compare( $php_version, $required_php_version, '>=' );

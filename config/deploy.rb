@@ -3,7 +3,6 @@ set :default_stage, "prod"
 require 'capistrano/ext/multistage'
 
 require 'capatross'
-require "delayed/recipes"
  
 set :application, "blogs"
 set :repository,  "git@github.com:extension/blogs.git"

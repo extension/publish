@@ -88,10 +88,41 @@ src: url(http://themes.googleusercontent.com/static/fonts/sanchez/v1/9T6om-IyqE2
 	position: relative;
 	margin-right:10px;
 }
+.site-footer {
+	margin-top: 30px;
+	padding-top: 30px;
+	border: 1px solid #ddd;
+}
+.site-footer p{
+	padding-left: 5px;
+	color: #f86f20;
+}
+#extension_icon_512 {
+	width: 64px;
+	height: 64px;
+	display: block;
+	margin: 5px 15px;
+	border: 1px solid #ddd;
+	padding: 2px;
+	float: left;
+}
+#extension_icon_512 img {
+	display: block;
+}
 
-.nav-menu .sub-menu, .nav-menu .children {
-	background-color: #fff;
-	border: 2px solid #fff;
+.site-footer ul li {
+	padding: 0 5px;
+	border-right: 1px solid #333;
+	line-height: 100%;
+	display: inline-block;
+}
+
+.site-footer ul{
+	margin-top: 0;
+}
+
+#secondary{
+	margin-bottom: 30px;
 }
 
 @media (max-width: 1069px) {
@@ -145,7 +176,7 @@ src: url(http://themes.googleusercontent.com/static/fonts/sanchez/v1/9T6om-IyqE2
 	}
 	
 	.site-header{
-		min-height: 145px;
+		max-height: 120px;
 	}
 	
 }

@@ -86,7 +86,7 @@ src: url(http://themes.googleusercontent.com/static/fonts/sanchez/v1/9T6om-IyqE2
 	background-repeat: no-repeat;
 	background-position: right 38px	;
 	position: relative;
-	margin-right:10px;
+	margin: 0 auto;
 }
 .site-footer {
 	margin-top: 30px;

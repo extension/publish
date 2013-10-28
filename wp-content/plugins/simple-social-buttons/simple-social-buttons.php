@@ -4,7 +4,7 @@
     Plugin URI: http://www.rabinek.pl/simple-social-buttons-wordpress/
     Description: Insert social buttons into posts and archives: Facebook "Like it", Google Plus One "+1" and Twitter share.
     Author: Paweł Rabinek
-    Version: 1.6.0
+    Version: 1.6.5
     Author URI: http://www.rabinek.pl/
 */
 
@@ -35,7 +35,7 @@
 
 class SimpleSocialButtonsPR {
 	var $pluginName = 'Simple Social Buttons';
-	var $pluginVersion = '1.6.0';
+	var $pluginVersion = '1.6.5';
 	var $pluginPrefix = 'ssb_pr_';
 	var $hideCustomMetaKey = '_ssb_hide';
    
@@ -177,6 +177,7 @@ window.___gcfg = {lang: '<?php echo $lang_g; ?>'};
 <style type="text/css">
    div.simplesocialbuttons { height: 20px; margin: 10px auto 10px 0; text-align: center; clear: left; }
    div.simplesocialbutton { float: left; text-align: center;}
+   .fb-like iframe { max-width: none !important; }
 </style>
 <!-- End of Simple Social Buttons -->
 
@@ -395,10 +396,10 @@ window.___gcfg = {lang: '<?php echo $lang_g; ?>'};
 					$arrButtonsCode[] = '<div class="simplesocialbutton ssb-button-googleplus"><!-- Google Plus One--><div class="g-plusone" data-size="medium" data-href="'.$permalink.'"></div></div>';
 					break;
 				case 'fblike':
-					$arrButtonsCode[] = '<div class="simplesocialbutton ssb-button-fblike"><!-- Facebook like--><div id="fb-root"></div><div class="fb-like" data-href="'.$permalink.'" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div></div>';
+					$arrButtonsCode[] = '<div class="simplesocialbutton ssb-button-fblike"><!-- Facebook like--><div id="fb-root"></div><div class="fb-like" data-href="'.$permalink.'" data-send="false" data-layout="button_count" data-show-faces="false"></div></div>';
 					break;
 				case 'twitter':
-					$arrButtonsCode[] = '<div class="simplesocialbutton ssb-buttom-twitter"><!-- Twitter--><a href="https://twitter.com/share" class="twitter-share-button" data-text="'.$title.'" data-url="'.$permalink.'" ' . ((!empty($this->settings['twitterusername'])) ? 'data-via="'.$this->settings['twitterusername'].'" ' : '') . 'rel="nofollow"></a></div>';
+					$arrButtonsCode[] = '<div class="simplesocialbutton ssb-button-twitter"><!-- Twitter--><a href="https://twitter.com/share" class="twitter-share-button" data-text="'.$title.'" data-url="'.$permalink.'" ' . ((!empty($this->settings['twitterusername'])) ? 'data-via="'.$this->settings['twitterusername'].'" ' : '') . 'rel="nofollow"></a></div>';
 					break;
 				case 'pinterest':
 					$thumb_id = get_post_thumbnail_id($post->ID);
@@ -414,7 +415,7 @@ window.___gcfg = {lang: '<?php echo $lang_g; ?>'};
 					// if there isn't thumbnail alt, take a post title as a description
 					$description = (!empty($thumb_alt)) ? $thumb_alt : $title ;
 					
-					$arrButtonsCode[] = '<div class="simplesocialbutton ssb-buttom-pinterest"><!-- Pinterest--><a href="http://pinterest.com/pin/create/button/?url='.urlencode($permalink).'&media='.urlencode($thumb_src).'&description='.urlencode($description).'" class="pin-it-button" count-layout="horizontal" rel="nofollow"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a></div>';
+					$arrButtonsCode[] = '<div class="simplesocialbutton ssb-button-pinterest"><!-- Pinterest--><a href="http://pinterest.com/pin/create/button/?url='.urlencode($permalink).'&media='.urlencode($thumb_src).'&description='.urlencode($description).'" class="pin-it-button" count-layout="horizontal" rel="nofollow"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a></div>';
 					break;
 			}
 		}
@@ -448,8 +449,8 @@ class SimpleSocialButtonsPR_Admin extends SimpleSocialButtonsPR {
 	}
 
 	public function admin_actions() {
-		if (current_user_can('administrator'))
-    		add_options_page('Simple Social Buttons ', 'Simple Social Buttons ', 1, 'simple-social-buttons', array(&$this, 'admin_page') );
+		if (current_user_can('install_plugins')) 
+    		add_options_page('Simple Social Buttons ', 'Simple Social Buttons ', "install_plugins", 'simple-social-buttons', array(&$this, 'admin_page') );
 	}
 
 	public function admin_page() {

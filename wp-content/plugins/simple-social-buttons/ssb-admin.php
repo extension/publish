@@ -14,7 +14,7 @@
 
 <?php
 
-if(strtolower($_POST['hiddenconfirm']) == 'y') {
+if(strtolower(@$_POST['hiddenconfirm']) == 'y') {
 
 	/**
 	 * Compile settings array
@@ -131,7 +131,7 @@ extract( $settings, EXTR_PREFIX_ALL, 'ssb' );
 			<label for="ssb_pinterest"><?php _e('Pinterest - Pin It', 'simplesocialbuttons'); ?></label> <?php echo _e('(Will be visible only on post with thumbnail)');?></p>
 			<!--  /pinterest -->
 
-			<p><label for="ssb_override_css"><input type="checkbox" name="ssb_override_css" id="ssb_override_css" value="1" <?php if($ssb_override_css) { echo 'checked="checked"'; } ?>/> <?php _e('Disable plugin CSS (only advanced users)'); ?></label></p>
+			<p><label for="ssb_override_css"><input type="checkbox" name="ssb_override_css" id="ssb_override_css" value="1" <?php if(!empty($ssb_override_css)) { echo 'checked="checked"'; } ?>/> <?php _e('Disable plugin CSS (only advanced users)'); ?></label></p>
          </div>
       </div>
 

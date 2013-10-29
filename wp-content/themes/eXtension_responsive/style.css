@@ -125,6 +125,13 @@ src: url(http://themes.googleusercontent.com/static/fonts/sanchez/v1/9T6om-IyqE2
 	margin-bottom: 30px;
 }
 
+img.alignright{
+	margin-left: 0;
+}
+.entry-content img.alignright, .entry-content .wp-caption.alignright{
+ margin-right: 0;
+}
+
 @media (max-width: 1069px) {
 	.site-main .widget-area {
 		margin-right: 0px;

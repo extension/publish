@@ -1,0 +1,89 @@
+blockquote {
+  behavior: url(/scripts/PIE.htc);
+  -pie-background:rgba(255,255,255,.15);
+}
+
+
+#featured section {
+  behavior: url(/scripts/PIE.htc);
+  -pie-background:rgba(0,0,0,0.1);
+}
+
+#featured section div {
+  behavior: url(/scripts/PIE.htc);
+  -pie-background:rgba(27,54,68,0.8);
+}
+
+.excerpt-thumb img, .excerpt-body {
+  behavior: url(/scripts/PIE.htc);
+  -pie-background:rgba(255,255,255,.15);
+}
+
+article img {
+  behavior: url(/scripts/PIE.htc);
+  -pie-background:rgba(255,255,255,.2);
+}
+
+#paginate a:link, #paginate a:visited {
+  behavior: url(/scripts/PIE.htc);
+  -pie-background:rgba(0,0,0,.1);
+}
+
+.entry-utility {
+  behavior: url(/scripts/PIE.htc);
+  -pie-background:rgba(0,0,0,.05);
+}
+
+.form-allowed-tags {
+  behavior: url(/scripts/PIE.htc);
+  -pie-background:rgba(0,0,0,.05);
+}
+
+.avatar {
+  behavior: url(/scripts/PIE.htc);
+  -pie-background:rgba(0,0,0,.075);
+}
+
+.even {
+  behavior: url(/scripts/PIE.htc);
+  -pie-background:rgba(255,255,255,.1);
+}
+
+.odd {
+  behavior: url(/scripts/PIE.htc);
+  -pie-background:rgba(0,0,0,.05);
+}
+
+#sub {
+  behavior: url(/scripts/PIE.htc);
+  -pie-background:rgba(0,0,0,.1);
+}
+
+#sub .cat a:link, #sub .cat a:visited {
+  behavior: url(/scripts/PIE.htc);
+  -pie-background:rgba(255,255,255,.2);
+}
+
+#sub .cat a:hover, #sub .cat a:focus, #sub .cat a:active {
+  behavior: url(/scripts/PIE.htc);
+  -pie-background:rgba(53,66,80,.7);
+}
+
+#contact .contactform form {
+	background: #d1bda8;
+}
+
+.cat a, #quick-contact form input, #quick-contact form textarea, #quick-contact .submit input, #searchform .txt, #searchform #s, #searchsubmit, #comments #submit, #comments textarea, #comments input, #contact .contactform input, #contact .contactform textarea, #contact .contactform .submit input {
+	background: #a1907c;
+	border:1px solid #908477;
+}
+
+#quick-contact .submit input, input#searchsubmit, #comments #submit, #contact .contactform .submit input {
+  background: #444;
+  border:0;
+  color: #c7b29a;
+  display: block;
+  margin-top: 10px;
+  padding:5px 10px;
+}
+

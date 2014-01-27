@@ -41,8 +41,8 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 <div class="changelog point-releases">
 	<h3><?php echo _n( 'Maintenance Release', 'Maintenance Releases', 1 ); ?></h3>
 	<p><?php printf( _n( '<strong>Version %1$s</strong> addressed %2$s bug.',
-		'<strong>Version %1$s</strong> addressed %2$s bugs.', 11 ), '3.7.1', number_format_i18n( 11 ) ); ?>
-		<?php printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'http://codex.wordpress.org/Version_3.7.1' ); ?>
+		'<strong>Version %1$s</strong> addressed %2$s bugs.', 31 ), '3.8.1', number_format_i18n( 31 ) ); ?>
+		<?php printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'http://codex.wordpress.org/Version_3.8.1' ); ?>
  	</p>
 </div>
 

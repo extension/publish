@@ -3,7 +3,7 @@
 Plugin Name: Enable Media Replace
 Plugin URI: http://www.mansjonasson.se/enable-media-replace
 Description: Enable replacing media files by uploading a new file in the "Edit Media" section of the WordPress Media Library.
-Version: 2.6
+Version: 3.0.1
 Author: Måns Jonasson
 Author URI: http://www.mansjonasson.se
 
@@ -25,9 +25,10 @@ Developed for .SE (Stiftelsen för Internetinfrastruktur) - http://www.iis.se
  *
  */
 
-add_action( 'admin_init', 'enable_media_replace_init' );
+add_action('admin_init', 'enable_media_replace_init');
 add_action('admin_menu', 'emr_menu');
 add_filter('attachment_fields_to_edit', 'enable_media_replace', 10, 2);
+add_filter('media_row_actions', 'add_media_action', 10, 2);
 
 add_shortcode('file_modified', 'emr_get_modified_date');
 
@@ -36,7 +37,7 @@ add_shortcode('file_modified', 'emr_get_modified_date');
  * To suppress it in the menu we give it an empty menu title.
  */
 function emr_menu() {
-	add_submenu_page('upload.php', __("Replace media", "enable-media-replace"), '','upload_files', __FILE__, 'emr_options');
+	add_submenu_page(NULL, __("Replace media", "enable-media-replace"), '','upload_files', 'enable-media-replace/enable-media-replace', 'emr_options');
 }
 
 /**
@@ -44,7 +45,7 @@ function emr_menu() {
  * Only languages files needs loading during init.
  */
 function enable_media_replace_init() {
-	load_plugin_textdomain( 'enable-media-replace', false, dirname( plugin_basename( __FILE__ ) ) );
+	load_plugin_textdomain( 'enable-media-replace', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
 
 /**
@@ -52,12 +53,23 @@ function enable_media_replace_init() {
  * @param array form fields edit panel
  * @return array form fields with enable-media-replace fields added
  */
-function enable_media_replace( $form_fields ) {
+function enable_media_replace( $form_fields, $post ) {
 
-	if (isset($_GET["attachment_id"]) && $_GET["attachment_id"]) {
+	// Check if we are on media upload screen for insertion of replace link
+	$on_media_edit_screen = false;
+	$current_wp_version = get_bloginfo('version');
+	if ($current_wp_version < 3.5) {
+		if (isset($_GET["attachment_id"]) && $_GET["attachment_id"]) { $on_media_edit_screen = true; } 
+	}
+	else {
+		$current_screen = get_current_screen();
+		if ( !is_null($current_screen) && $current_screen->base == 'post' && $current_screen->post_type == 'attachment' ) { $on_media_edit_screen = true; }
+	}
+	
+	if ($on_media_edit_screen == true) {
 
-		$url = admin_url( "upload.php?page=enable-media-replace/enable-media-replace.php&action=media_replace&attachment_id=" . (int) $_GET["attachment_id"]);
-       	$action = "media_replace";
+		$url = admin_url( "upload.php?page=enable-media-replace/enable-media-replace.php&action=media_replace&attachment_id=" . $post->ID);
+		$action = "media_replace";
       	$editurl = wp_nonce_url( $url, $action );
 
 		if (FORCE_SSL_ADMIN) {
@@ -92,6 +104,24 @@ function emr_options() {
 }
 
 /**
+ * Function called by filter 'media_row_actions'
+ * Enables linking to EMR straight from the media library
+*/
+function add_media_action( $actions, $post) {
+	$url = admin_url( "upload.php?page=enable-media-replace/enable-media-replace.php&action=media_replace&attachment_id=" . $post->ID);
+	$action = "media_replace";
+  	$editurl = wp_nonce_url( $url, $action );
+
+	if (FORCE_SSL_ADMIN) {
+		$editurl = str_replace("http:", "https:", $editurl);
+	}
+	$link = "href=\"$editurl\"";
+
+	$newaction['adddata'] = '<a ' . $link . ' title="' . __("Replace media", "enable-media-replace") . '" rel="permalink">' . __("Replace media", "enable-media-replace") . '</a>';
+	return array_merge($actions,$newaction);
+}
+
+/**
  * Shorttag function to show the media file modification date/time.
  * @param array shorttag attributes
  * @return string content / replacement shorttag
@@ -113,19 +143,26 @@ function emr_get_modified_date($atts) {
 	// Get file modification time
 	$filetime = filemtime($current_file);
 
-	// Do timezone magic to get around UTC
-	$timezone = date_default_timezone_get();
-	date_default_timezone_set(get_option('timezone_string'));
-
 	// do date conversion
 	$content = date($format, $filetime);
-
-	// Set timezone back to default
-	date_default_timezone_set($timezone);
-
+	
 	return $content;
 
 }
+
+// Add Last replaced by EMR plugin in the media edit screen metabox - Thanks Jonas Lundman (http://wordpress.org/support/topic/add-filter-hook-suggestion-to)
+function ua_admin_date_replaced_media_on_edit_media_screen() {
+	if( !function_exists( 'enable_media_replace' ) ) return;
+	global $post;
+	$id = $post->ID;
+	$shortcode = "[file_modified id=$id]";
+	?>
+	<div class="misc-pub-section curtime">
+		<span id="timestamp"><?php _e( 'Revised', 'enable-media-replace' ); ?>: <b><?php echo do_shortcode($shortcode); ?></b></span>
+	</div>
+	<?php
+}
+add_action( 'attachment_submitbox_misc_actions', 'ua_admin_date_replaced_media_on_edit_media_screen', 91 );
 
 
 ?>

@@ -1,22 +1,22 @@
 === Plugin Name ===
-Contributors: Tal.ki
+Contributors: Talki
 Donate link:
 Tags: forum, message board, discussion board, community
 Requires at least: 2.0.2
-Tested up to: 2.9.2
-Stable tag: 1.1.6
+Tested up to: 3.3.1
+Stable tag: 1.4.0
 
 Add a forum to your site and allow your members to start their own conversations. Admins are automatically logged in, guests to your blog can choose a Wordpress, Facebook, Twitter, or Google login.
 
 == Description ==
 
-Tal.ki Embeddable Forums are the easiest way to add a forum, message board, or discussion board to your blog. This plugin will add a Forums page to your blog and allow your members to start their own conversations and topics on your site.  The forums work with WordPress along with global login systems such as Facebook, Twitter, Google, and a dozen others.  Create your own discussion board in seconds.
+Talki Embeddable Forums are the easiest way to add a forum, message board, or discussion board to your blog. This plugin will add a Forums page to your blog and allow your members to start their own conversations and topics on your site.  The forums work with WordPress along with global login systems such as Facebook, Twitter, Google, and a dozen others.  Create your own discussion board in seconds.
 
 Members will be automatically notified of their responses.  You can promote members to moderator and admin status.
 
 Suggest a feature at http://talki.uservoice.com/
 
-Learn more at http://tal.ki/feature-tour/
+Learn more at http://talkiforum.com/feature-tour/
 
 ###Features:
 * Customizable with CSS
@@ -34,31 +34,17 @@ Learn more at http://tal.ki/feature-tour/
 * Automatically brings a returning member to their last unread reply
 
 
-###Plans:
-####Free:
-* Unlimited posting
-* Unlimited members
-* 15 recent topics
-* 5 forums
-* API access
-####Pro (as low as $2.95/month)
-* Everything listed above and...
-* Unlimited topics
-* Unlimited forums
-* Private forums
-* SEO package
-
 == Installation ==
 
 ###Wordpress Admin Panel
-Automatic when down through your wp-admin panel [(tutorial with screenshots)](http://www.help.tal.ki/home/embedding-talki-forums/embed-talki-into-wordpress "Step-by-step guide for adding the plugin to your Wordpress Install")
+Automatic when done through your wp-admin panel [(tutorial with screenshots)](http://www.help.talkiforum.com/home/embedding-talki-forums/embed-talki-into-wordpress "Step-by-step guide for adding the plugin to your Wordpress Install")
 
 
 ###Manual installation
-1. Upload `talki.php` to the `/wp-content/plugins/` directory
+1. Upload `talki.zip` to the `/wp-content/plugins/` directory
 1. Unzip the compressed plugin
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Configure your forum directly on your site, just head to the new 'Forums' page that was created.
+1. You will now find a "Forum" tab on your site, and Talki Settings on your Wordpress admin page Settings menu
 
 == Frequently Asked Questions ==
 = How do I customize it to my site? =
@@ -70,19 +56,25 @@ If you want to change the background color of your forum, you can set a div with
 
 = I have a question =
 
-Go to http://help.tal.ki/ or email questions@tal.ki and we'll respond.
+Go to http://help.talkiforum.com/ or email questions@talkiforum.com and we'll respond.
 
 == Screenshots ==
 
-1. A listing of topics in a typical Tal.ki forum
-1. A Tal.ki forum embedded in an example Wordpress blog
+1. A listing of topics in a typical Talki forum
+1. A Talki forum embedded in an example Wordpress blog
 
 == Changelog ==
+= 1.3.0 =
+Mar 21, 2012: Fixed issues when reinstalling Talki after removing the plugin or deleting a Forum page. 
+
+= 1.2.0 =
+Feb 10, 2012: Updates for Wordpress 3.0 and a couple of bug fixes.
+
 = 1.1.6 =
 May 19, 2010: Adds a "Recent posts" widget that can be used in the sidebar!
 
 = 1.1.5 =
-May 12, 2010: Fixed issues with some installs of new tal.ki's.  No need to upgrade.
+May 12, 2010: Fixed issues with some installs of new talki's.  No need to upgrade.
 
 = 1.1.4 =
 May 11, 2010: Fixed issue so "Editor" roles on Wordpress are set to "Moderators" on the forum.  Admins of Wordpress are automatically Admins of the forum.
@@ -97,10 +89,16 @@ Apr 19, 2010: Fixed minor SSO bug in 1.1.0 release earlier today.
 Apr 19, 2010: Added Single Sign-On (SSO). Login automatically happens for admins or members of the blog.  Non-members will have the option of logging in with other accounts, such as Facebook, Twitter, Google, etc.
 
 = 1.0.0 =
-Apr 14, 2010: First Public Release of Tal.ki Embeddable forums
+Apr 14, 2010: First Public Release of Talki Embeddable forums
 
 
 == Upgrade Notice ==
+= 1.3.0 =
+Upgrade for better integration with Wordpress 3.3.1
+
+= 1.2.0 =
+Better integration with Wordpress 3.
+
 = 1.1.6 =
 Adds a "Recent posts" widget that can be used in the sidebar!
 
@@ -117,9 +115,9 @@ Upgrade to enable Single Sign-On (SSO) for your forum.
 Upgrade to enable Single Sign-On (SSO) for your forum.
 
 = 1.0.0 =
-Get the officially supported Tal.ki embeddable forum
+Get the officially supported Talki embeddable forum
 
-== From Tal.ki ==
+== From Talki ==
 
-The data of your forum will be hosted at http://tal.ki/  This plugin allows you to install our hosted forum service on your self installed wordpress installation.
+The data of your forum will be hosted at http://talkiforum.com/  This plugin allows you to install our hosted forum service on your self installed wordpress installation.
 

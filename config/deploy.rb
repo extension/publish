@@ -1,9 +1,9 @@
-set :stages, %w(prod)
-set :default_stage, "prod"
+set :stages, %w(prod dev)
+set :default_stage, "dev"
 require 'capistrano/ext/multistage'
 
 require 'capatross'
- 
+
 set :application, "blogs"
 set :repository,  "git@github.com:extension/blogs.git"
 set :branch, "master"
@@ -17,26 +17,47 @@ set :port, 24
 
 after "deploy:update_code", "deploy:link_and_copy_configs"
 after "deploy:update_code", "deploy:cleanup"
-
+after 'deploy',             'deploy:restart'
 
 namespace :deploy do
-  
-  
+
+   # Override default restart task
+   desc "Restart Apache"
+   task :restart, :roles => :app do
+     invoke_command '/usr/sbin/service apache2 restart', via: 'sudo'
+   end
+
   # Link up various configs (valid after an update code invocation)
   task :link_and_copy_configs, :roles => :app do
     run <<-CMD
     rm -rf #{release_path}/wp-config.php &&
-    ln -nfs /services/config/#{application}/.htaccess #{release_path}/.htaccess &&
-    ln -nfs /services/config/#{application}/wp-config.php #{release_path}/wp-config.php &&
-    ln -nfs /services/config/#{application}/robots.txt #{release_path}/robots.txt &&
+    ln -nfs /services/blogs/shared/config/wp-config.php #{release_path}/wp-config.php &&
+    ln -nfs /services/blogs/shared/config/.htaccess #{release_path}/.htaccess &&
+    ln -nfs /services/blogs/shared/config/robots.txt #{release_path}/robots.txt &&
     rm -rf #{release_path}/wp-content/blogs.dir &&
-    ln -nfs /services/wordpress/blogs.extension.org/blogs.dir #{release_path}/wp-content/blogs.dir
+    ln -nfs /services/blogs/shared/uploads #{release_path}/wp-content/blogs.dir
     CMD
   end
-  
 
+  [:start, :stop].each do |t|
+    desc "#{t} task is a no-op with this application"
+    task t, :roles => :app do ; end
+  end
+
+
+   # Override default web enable/disable tasks
+   namespace :web do
+
+      desc "Put Apache in maintenancemode by touching the maintenancemode file"
+      task :disable, :roles => :app do
+        invoke_command "touch /services/maintenance/#{vhost}.maintenancemode"
+      end
+
+      desc "Remove Apache from maintenancemode by removing the maintenancemode file"
+      task :enable, :roles => :app do
+        invoke_command "rm -f /services/maintenance/#{vhost}.maintenancemode"
+      end
+
+   end
 
 end
-
-
-

@@ -1,3 +1,3 @@
-set :deploy_to, '/services/apache/vhosts/blogs.extension.org/docroot/'
-server 'blogs.extension.org', :app, :web, :db, :primary => true
-
+set :deploy_to, "/services/blogs/"
+set :vhost, 'blogs.extension.org'
+server vhost, :app, :web, :db, :primary => true

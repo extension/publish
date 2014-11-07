@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: XRDS-Simple
-Plugin URI: http://wordpress.org/extend/plugins/xrds-simple/
+Plugin URI: https://github.com/diso/wordpress-xrds-simple
 Description: Provides framework for other plugins to advertise services via XRDS.
-Version: 1.0
+Version: 1.1
 Author: DiSo Development Team
 Author URI: http://diso-project.org/
 License: MIT license (http://www.opensource.org/licenses/mit-license.php)
@@ -51,7 +51,7 @@ function xrds_add_xrd($xrds, $id, $type=array(), $expires=false) {
  * @since 1.0
  */
 function xrds_add_service($xrds, $xrd_id, $name, $content, $priority=10) {
-	if (!is_array($xrds[$xrd_id])) {
+	if (!array_key_exists($xrd_id, $xrds) || !is_array($xrds[$xrd_id])) {
 		$xrds = xrds_add_xrd($xrds, $xrd_id);
 	}
 	$xrds[$xrd_id]['services'][$name] = array('priority' => $priority, 'content' => $content);
@@ -100,8 +100,8 @@ add_filter('xrds_simple', 'xrds_atompub_service');
  * Print HTML meta tags, advertising the location of the XRDS document.
  */
 function xrds_meta() {
-	echo '<meta http-equiv="X-XRDS-Location" content="'.get_bloginfo('home').'/?xrds" />'."\n";
-	echo '<meta http-equiv="X-Yadis-Location" content="'.get_bloginfo('home').'/?xrds" />'."\n";
+	echo '<meta http-equiv="X-XRDS-Location" content="'.get_bloginfo('url').'/?xrds" />'."\n";
+	echo '<meta http-equiv="X-Yadis-Location" content="'.get_bloginfo('url').'/?xrds" />'."\n";
 }
 
 
@@ -127,11 +127,11 @@ function xrds_write() {
 	foreach($xrds as $id => $xrd) {
 		$xml .= '	<XRD xml:id="'.htmlspecialchars($id).'" version="2.0">' . "\n";
 		$xml .= '		<Type>xri://$xrds*simple</Type>'."\n";
-		if(!$xrd['type']) $xrd['type'] = array();
+		if(!array_key_exists('type', $xrd) || !$xrd['type']) $xrd['type'] = array();
 		if(!is_array($xrd['type'])) $xrd['type'] = array($xrd['type']);
 		foreach($xrd['type'] as $type)
 			$xml .= '		<Type>'.htmlspecialchars($type).'</Type>'."\n";
-		if($xrd['expires'])
+		if(array_key_exists('expires', $xrd) && $xrd['expires'])
 			$xml .= '	<Expires>'.htmlspecialchars($xrd['expires']).'</Expires>'."\n";
 		foreach($xrd['services'] as $name => $service) {
 			$xml .= "\n".'		<!-- ' . $name . ' -->'."\n";
@@ -193,12 +193,22 @@ function xrds_options_page() {
 	echo '</div>';
 }//end xrds_options_page
 
+function xrds_plugin_actions($links, $file) {
+	static $this_plugin;
+	if(!$this_plugin) $this_plugin = plugin_basename(__FILE__);
+	if($file == $this_plugin) {
+		$settings_link = '<a href="options-general.php?page=xrds-simple" style="font-weight:bold;">Settings</a>';
+		$links[] = $settings_link;
+	}//end if this_plugin
+	return $links;
+}//end xrds_plugin_actions
 
 /**
  * Setup admin menu for XRDS.
  */
 function xrds_admin_menu() {
-	add_options_page('XRDS-Simple', 'XRDS-Simple', 8, 'xrds-simple', 'xrds_options_page');
+	add_options_page('XRDS-Simple', 'XRDS-Simple', 'manage_options', 'xrds-simple', 'xrds_options_page');
+	add_filter('plugin_action_links', 'xrds_plugin_actions', 10, 2);
 }
 
 
@@ -210,12 +220,16 @@ function xrds_admin_menu() {
 function xrds_parse_request($wp) {
 	$accept = explode(',', $_SERVER['HTTP_ACCEPT']);
 	if(isset($_GET['xrds']) || in_array('application/xrds+xml', $accept)) {
-		header('Content-type: application/xrds+xml');
+		if (isset($_REQUEST['format']) && $_REQUEST['format'] == 'text') { 
+			header('Content-type: text/plain');
+		} else {
+			header('Content-type: application/xrds+xml');
+		}
 		echo xrds_write();
 		exit;
 	} else {
-		@header('X-XRDS-Location: '.get_bloginfo('home').'/?xrds');
-		@header('X-Yadis-Location: '.get_bloginfo('home').'/?xrds');
+		@header('X-XRDS-Location: '.get_bloginfo('url').'/?xrds');
+		@header('X-Yadis-Location: '.get_bloginfo('url').'/?xrds');
 	}
 }
 

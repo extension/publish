@@ -3,7 +3,7 @@ Contributors: SriniG
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8110402
 Tags: pages, subpages, menu, hierarchy, sidebar, widget, navigation
 Requires at least: 2.7
-Tested up to: 2.9.2
+Tested up to: 3.6-beta3-24407
 Stable tag: trunk
 
 A highly configurable WordPress sidebar widget to list pages and sub-pages. User friendly widget control comes with various options. 
@@ -61,7 +61,7 @@ The built-in WP function `get_pages()` doesn't list private pages and doesn't ha
 
 = Where do I ask a question about the plugin? =
 
-Leave your questions, suggestions, bug reports, etc., as a comment at the [plugin page](http://srinig.com/wordpress-plugins/flexi-pages/ "Flexi Pages Widget") or through [contact form](http://srinig.com/contact/) at the author's website. Questions frequently asked will be incorporated into the FAQ section in future versions of the plugin.
+Leave your questions, suggestions, bug reports, etc., as a comment at the [plugin page](http://srinig.com/wordpress/plugins/flexi-pages/ "Flexi Pages Widget") or through [contact form](http://srinig.com/wordpress/contact/) at the author's website. Questions frequently asked will be incorporated into the FAQ section in future versions of the plugin.
 
 == Screenshots ==
 
@@ -73,18 +73,32 @@ Versions 1.5.5 and above supports localization. The localization template file (
 
 An application like [poEdit](http://www.poedit.net/) can be used to translate the plugin, or just translate the strings in the flexipages.pot file and send it to the plugin author. All translations sent to the author will be bundled with the next version of the plugin.
 
-As of version 1.6.3, Flexi Pages Widget is translated into the following languages:
+As of the current version, Flexi Pages Widget is translated into the following languages:
 
+* Bulgarian (`bg_BG`) by [Team Ajoft](http://www.ajoft.com/)
+* Belorussian (`be_BY`) by [Alexander Ovsov](http://webhostinggeeks.com/)
 * Catalan (`ca`) by Robert Buj Gelonch
+* Czech (`cs_CZ`) by Tomáš Hubka
+* Danish (`da_DK`) by [Morten Elm](http://www.dubaifan.dk/)
 * German (`de_DE`) by [Frank W. Hempel](http://frank-hempel.de/)
+* Filipino (`fil_PH`) by [Morten Elm](http://www.storbyfan.dk/)
 * French (`fr_FR`) by Pierre Sudarovich
+* Irish (`ga_IE`) by [Ajeet](http://www.apoto.com/)
+* Hindi (`hi_IN`) by Ashish Jha, [Outshine Solutions](http://outshinesolutions.com/)
+* Bahasa Indonesia (`id_ID`) by [Bejana](http://bejana.com)
 * Italian (`it_IT`) by [Gianni Diurno](http://gidibao.net/)
+* Lithuanian (`lt_LT`) by [Nata Strazda](www.designcontest.com/)
+* Norwegian Bokmål (`nb_NO) by [Tore Johnny Bråtveit](http://www.punktlig-ikt.no/)
 * Dutch (`nl_NL`) by [Rene](http://wordpresspluginguide.com/)
+* Polish (`pl_PL`) by Mariusz Jackiewicz
 * Brazilian Portugese (`pt_BR`) by Tzor More
+* Romanian (`ro_RO`) by [Michail Bogdanov](http://www.webhostinghub.com/)
 * Russian (`ru_RU`) by [Fat Cow](http://www.fatcow.com)
+* Serbian (`sr_RS`) by [Mike Arias](http://www.inmotionhosting.com/)
 * Swedish (`sv_SE`) by Ove Kaufeldt
 * Turkish (`tr_TR`) by [Hakan Demiray](http://www.dmry.net/)
 * Ukrainian (`uk_UA`) by [wpp.pp.ua](http://wpp.pp.ua/)
+* Chinese (`zh_CN`) by Kaijia Feng
 
 
 ==flexipages() template function==
@@ -182,6 +196,35 @@ Instead of using the widget, the function flexipages() can be called from anywhe
 
 == Changelog ==
 
+= v1.6.13 (2013-06-04) =
+* Fixes the bug introduced in previous update where an empty home page listing is introduced even when the home page link is disabled.
+
+= v1.6.12 (2013-06-04) =
+* Added localization in Filipino and Danish languages.
+* Minor fixes.
+
+= v1.6.11.1 (2012-12-13) =
+* Re-adding localization files that somehow missed the last update
+* Updating WP compatibility info in readme
+
+= v1.6.11 (2012-11-18) =
+* Added localization in Serbian, Bulgarian, Belorussian, Chinese and Irish languages.
+* Minor fixes.
+
+= v1.6.10 (2011-08-30) =
+* 'Go' button for the dropdown display is removed. Selecting a page automatically takes the user to the page.
+* Added localization in Bahasa Indonesia and Lithuanian language.
+* Minor fixes.
+
+= v1.6.6 (2011-06-17) =
+* Hindi localization added.
+
+= v1.6.5 (2011-06-14) =
+* Localization in Romanian language added.
+
+= v1.6.4 (2011-06-09) =
+* Localization in Czech, Norwegian Bokmål and Polish languages added
+
 = v1.6.3 (2010-04-09) =
 * Localization in Italian language added.
 
@@ -272,6 +315,9 @@ Instead of using the widget, the function flexipages() can be called from anywhe
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.6.13 =
+Fixes a little bug introduced in v1.6.12. Upgrade recommended.
 
 = 1.6 =
 New feature to display as dropdown added, translation in Catalan and Dutch languages added. Core rewritten. Upgrade recommended.

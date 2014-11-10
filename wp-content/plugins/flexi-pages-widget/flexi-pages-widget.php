@@ -3,12 +3,13 @@
 Plugin Name: Flexi Pages Widget
 Plugin URI: http://srinig.com/wordpress/plugins/flexi-pages/
 Description: A highly configurable WordPress sidebar widget to list pages and sub-pages. User friendly widget control comes with various options. 
-Version: 1.6.3
+Version: 1.6.13
 Author: Srini G
 Author URI: http://srinig.com/wordpress
+License: GPL2
 */
 
-/*  Copyright 2007 Srini G (email : srinig.com@gmail.com)
+/*  Copyright 2007-2013 Srini G (email : srinig.com@gmail.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,7 +32,7 @@ function flexipages_init()
 {
 
 	if(function_exists('load_plugin_textdomain'))
-		load_plugin_textdomain('flexipages', 'wp-content/plugins/flexi-pages-widget/languages/');
+		load_plugin_textdomain('flexipages', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
 
 	function flexipages_options_default()
@@ -40,7 +41,9 @@ function flexipages_init()
 		'title' => __('Pages', 'flexipages'), 
 		'sort_column' => 'menu_order', 
 		'sort_order' => 'ASC', 
-		'exclude' => '', 
+		'exclude' => '',
+		'include' => '',
+		'exinclude' => 'exclude', 
 		'hierarchy' => 'on', 
 		'depth' => 0, 
 		'show_subpages_check' => 'on', 
@@ -48,6 +51,7 @@ function flexipages_init()
 		'show_home_check' => 'on',
 		'show_home' => __('Home', 'flexipages'), 
 		'show_date' => 'off',
+		'date_format' => '',
 		'dropdown' => 'off'		);
 	}
 	
@@ -56,6 +60,7 @@ function flexipages_init()
 		if(is_home() && !is_front_page()) {
 			if($curr_page_id = get_option('page_for_posts'))
 				$curr_page = &get_post($curr_page_id);
+			else return array();
 		}
 		else if( is_page() ) {
 			global $wp_query;
@@ -81,9 +86,12 @@ function flexipages_init()
 		if(!$page_array)
 			return;
 		
+		$pagelist = "";
+		
 		foreach($page_array as $page) {
 			
-			if($page['date']) $date = " ".$page['date'];
+			$date = "";			
+			if(isset($page['date']) && $page['date']) $date = " ".$page['date'];
 			
 			$pagelist .= str_repeat("\t", $level+1).'<li class="'.$page['class'].'"><a href="'.$page['link'].'" title="'.$page['title'].'">'.$page['title'].'</a>'.$date;
 			if($page['children'])
@@ -99,10 +107,15 @@ function flexipages_init()
 	{
 		if(!$page_array)
 			return;
+
+		$page_dropdown = "";
+		$depth = 0;
 		
 		foreach($page_array as $page) {
 			if($page['date']) $date = " ".$page['date'];
-			$page_dropdown .= str_repeat("\t", $depth+1).'<option class="level-'.$level.'" value="'.$page['ID'].'">'.str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;", $level).$page['title'].$date.'</option>'."\n";
+			if(is_page($page['ID'])) $selected = ' selected="selected"';
+			else $selected = '';
+			$page_dropdown .= str_repeat("\t", $depth+1).'<option class="level-'.$level.'" value="'.$page['ID'].'"'.$selected.'>'.str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;", $level).$page['title'].$date.'</option>'."\n";
 			if($page['children'])
 				$page_dropdown .= flexipages_dropdown($page['children'], $level+1);
 		}
@@ -121,6 +134,8 @@ function flexipages_init()
 		
 		extract($options);
 		
+		$page_array = array();
+		
 		if($show_home && $show_home != 'off') {
 			$class = "home_page";
 			$class .= is_home()?" current_page_item":"";			
@@ -132,8 +147,6 @@ function flexipages_init()
 				'class' => $class
 			);
 		}	
-		else
-			$page_array = array();
 			
 		if($show_subpages == -2) $show_subpages = 2;
 		if($show_subpages == -3) $show_subpages = 3;
@@ -168,6 +181,7 @@ function flexipages_init()
 					!$include)
 					$children = flexipages_get_pages("child_of={$page->ID}&parent={$page->ID}&sort_column={$sort_column}&sort_order={$sort_order}&exclude={$exclude}&include={$include}&show_subpages={$show_subpages}&depth={$depth}&show_date={$show_date}&date_format={$date_format}", $level+1);
 				
+				$date = '';
 				if($show_date) {
 					$x = explode(" ", $page->post_date);
 					$y = explode("-", $x[0]);
@@ -176,7 +190,7 @@ function flexipages_init()
 				$class = "page_item page-item-".$page->ID;
 				if(is_page($page->ID))
 					$class .= " current_page_item";
-				else if($page->ID == $currpage_hierarchy[1])
+				else if(isset($currpage_hierarchy[1]) && $page->ID == $currpage_hierarchy[1])
 					$class .= " current_page_ancestor current_page_parent";
 				else if(in_array($page->ID, $currpage_hierarchy))
 					$class .= " current_page_ancestor";
@@ -247,9 +261,9 @@ function flexipages_init()
 		if(!$page_array) return "";
 		
 		if($dropdown == 'on' || $dropdown == 1) {
-			$pages = "<form action=\"". get_bloginfo('url') ."\" method=\"get\">\n<select name=\"page_id\" id=\"page_id\">";
+			$pages = "<form action=\"". get_bloginfo('url') ."\" method=\"get\">\n<select name=\"page_id\" id=\"page_id\" onchange=\"top.location.href='".get_bloginfo('url')."?page_id='+this.value\">";
 			$pages .= flexipages_dropdown($page_array);
-			$pages .= "</select><input type=\"submit\" name=\"submit\" value=\"".__('Go', 'flexipages')."\" /></form>";
+			$pages .= "</select><noscript><input type=\"submit\" name=\"submit\" value=\"".__('Go', 'flexipages')."\" /></noscript></form>";
 		}
 		else
 			$pages = flexipages_list($page_array);
@@ -287,12 +301,14 @@ function flexipages_init()
 		
 		$title = apply_filters('widget_title', $options[$number]['title']);
 		
+		$include = $exclude = '';
+		if(isset($exinclude) && isset($exinclude_values)) {
+			if($exinclude == 'include')
+				$include = $exinclude_values;
+			else
+				$exclude = $exinclude_values;
+		}
 		
-		if($exinclude == 'include')
-			$include = $exinclude_values;
-		else
-			$exclude = $exinclude_values;
-
 		if($show_subpages_check == 'off' || !$show_subpages_check) {
 			$depth = 1;
 			$show_subpages = '';
@@ -304,11 +320,11 @@ function flexipages_init()
 		if($hierarchy == 'off' || !$hierarchy)
 			$depth = -1;
 		
-		if($home_link)
+		if(isset($home_link) && $home_link)
 			$show_home = $home_link;
 		else if ($show_home_check != 'on')
 			$show_home = '';
-		else if ($show_home_check == on && !$show_home)
+		else if ($show_home_check == 'on' && !$show_home)
 			$show_home = __('Home');
 			
 		
@@ -318,13 +334,15 @@ function flexipages_init()
 
 			if($title && $pagelist)
 				echo $before_title . $title . $after_title . "\n";
-
-			echo $before_pagelist . $pagelist . $after_pagelist . "\n";
+	
 			/* 	$before_pagelist and $after_pagelist are widget arguments that 
 				can be defined in the functions.php of your theme.
 				These arguments can be used, for example, if you want to enclose
 				the	pagelist within a <div>.
 			*/
+			if(isset($before_pagelist) && isset($after_pagelist)) 
+				echo $before_pagelist . $pagelist . $after_pagelist . "\n";
+			else echo $pagelist . "\n";
 
 			echo $after_widget;
 		}
@@ -418,7 +436,7 @@ function flexipages_init()
 			$options[$number] = flexipages_options_default();
 		}
 		
-		$title = attribute_escape($options[$number]['title']);
+		$title = esc_attr($options[$number]['title']);
 		$sort_column_select[$options[$number]['sort_column']] = " selected=\"selected\"";
 		$sort_order_select[$options[$number]['sort_order']] = " selected=\"selected\"";
 		$exinclude_select[$options[$number]['exinclude']] = ' selected="selected"';
@@ -436,9 +454,9 @@ function flexipages_init()
 		else
 			$depth_select[0] = ' selected="selected"';
 		$depth_display = $hierarchy_check?'':' style="display:none;"';
-		$show_home_check_check = ($options[$number]['home_link'] || $options[$number]['show_home_check'] == 'on')?' checked="checked"':'';
+		$show_home_check_check = ((isset($options[$number]['home_link']) && $options[$number]['home_link']) || $options[$number]['show_home_check'] == 'on')?' checked="checked"':'';
 		$show_home_display = $show_home_check_check?'':' style="display:none;"';
-		$show_home = isset($options[$number]['home_link'])?attribute_escape($options[$number]['home_link']):attribute_escape($options[$number]['show_home']);
+		$show_home = isset($options[$number]['home_link'])?esc_attr($options[$number]['home_link']):esc_attr($options[$number]['show_home']);
 		$show_date_check = ($options[$number]['show_date'] == 'on')?' checked="checked"':'';
 		$date_format_display = $show_date_check?'':' style="display:none;"';
 		$date_format_select[$options[$number]['date_format']] = ' selected="selected"';

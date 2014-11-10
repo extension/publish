@@ -1,10 +1,10 @@
 === Plugin Name ===
 Contributors: xradar
-Donate link: http://www.rabinek.pl/
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=UD823RE2F623Q&lc=US&item_name=WP%20Simple%20Social%20Buttons&item_number=Support%20Open%20Source&no_note=1&no_shipping=1&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
 Tags: facebook, google, twitter, pinterest, plus one, like it, like, share, pin, pin it
 Requires at least: 2.8
-Tested up to: 3.6.1
-Stable tag: 1.6.5
+Tested up to: 3.8
+Stable tag: 1.7.7
 
 Insert and customize social buttons: Facebook Like it, Google plus +1, Twitter share, Pinterest Pin it. Share your content with friends.
 
@@ -40,9 +40,9 @@ Simple Social Buttons is currently in the following languages:
 - Serbo-Croatian
 - Slovak
 - Spanish
+- Swedish
 - Thai 
-
-Feel free if you want to create a translation of this plugin. Contact me via e-mail or Twitter [@rabinek](https://twitter.com/rabinek "Paweł Rabinek on Twitter"), and I'll add your's translation to Simple Social Buttons.
+- Ukrainian 
 
 For more information about Wordpress and SEO, visit my blog [Rabinek.pl](http://www.rabinek.pl/ "Paweł Rabinek - Blog SEO") (in polish) and my company [RedSEO](http://www.redseo.pl/ "RedSEO") (in polish).
 Also check my free SEO audit tool [Seoptimer.com - Website Review](http://www.seoptimer.com/ "Free SEO Audit tool").
@@ -75,7 +75,7 @@ This plugin automatically adds the Facebook Like button, Google plus one +1, Twi
 
 = How about support? =
 
-Follow me at Twitter [@rabinek](http://twitter.com/rabinek "Paweł Rabinek na Twitter") or send me a mention. I'll reply as soon as I get it. You can also visit my blog [Rabinek.pl](http://www.rabinek.pl/ "Paweł Rabinek - Blog SEO") (in polish).
+Use [plugin's forum](http://wordpress.org/support/plugin/simple-social-buttons "Forum") to ask about plugin or report some problems. 
 
 = Is there a template tag for custom install? =
 
@@ -100,13 +100,13 @@ Make sure you have set WPLANG in wp-config.php file. Correct values are "en_US" 
 - [WebHostingGeeks.com](http://webhostinggeeks.com/blog/ "Webhosting Geeks") for slovak translation 
 - [WPdiscounts](http://wpdiscounts.com/ "WPdiscounts") for dutch translation
 - [Web Hosting Hub](http://www.webhostinghub.com/ "Webhostinghub") for serbo-croatian translation
+- [Michael Yunat](http://getvoip.com/blog "http://getvoip.com") for ukrainian translation
 
 == Screenshots ==
 
-1. Simple Social Buttons - plugin options
-2. Plugin example
-3. Plugin on archive
-4. Widget in post edition
+1. All buttons before the content
+2. Widget in post edition
+3. Plugin settings page
 
 
 == Changelog ==
@@ -175,3 +175,26 @@ Make sure you have set WPLANG in wp-config.php file. Correct values are "en_US" 
 = 1.6.5 =
 * Added dutch translation
 * Added serbo-croatian translation
+
+= 1.6.6 =
+* Update for Wordpress 3.8
+
+= 1.7.0 =
+* Fixed margin-right for buttons
+* Pinterest button code update
+
+= 1.7.2 =
+* New sreenshots of plugin
+
+= 1.7.3 =
+* New description and donation link
+* New polish and english translation
+
+= 1.7.4 =
+* Fixed position of Facebook "Like" button
+
+= 1.7.5 =
+* Added ukrainian translation 
+
+= 1.7.7 =
+* Added swedish translation 

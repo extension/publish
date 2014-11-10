@@ -1,21 +1,21 @@
 <?php
 /**
  * @package Talki
- * @author Team Tal.ki 
- * @version 1.1.6
+ * @author Team Talki 
+ * @version 1.4.0
  */
 /*
-Plugin Name: Tal.ki Embeddable Forums
+Plugin Name: Talki Embeddable Forums
 Plugin URI: http://wordpress.org/extend/plugins/talki-embeddable-forums/
-Description: The easiest way to embed a forum onto your WordPress site.  Admin and Member roles are tightly integrated with WordPress.  Members are notified of new responses.  The forums are Search Engine Optimized (SEO) and have tons of core 'forum' features not available in other plugins.  Supports BBCode, Private & Public Forums, Permalinking, lockable & sticky topics, embedding of media and youtube videos and it will automatically bring a returning member to their last unread reply.
-Author: Team Tal.ki
-Version: 1.1.6
-Author URI: http://tal.ki/
+Description: Adds a forum tab to your WordPress site. The easiest way to embed a forum onto your WordPress! Admin and Member roles are tightly integrated with WordPress.  Members are notified of new responses.  The forums are Search Engine Optimized (SEO) and have tons of core 'forum' features not available in other plugins.  Supports BBCode, Private & Public Forums, Permalinking, lockable & sticky topics, embedding of media and youtube videos and it will automatically bring a returning member to their last unread reply.
+Author: Team Talki
+Version: 1.4.0
+Author URI: http://talkiforum.com/
 */
 
 
 function randstring($len) {
-    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    $chars = "abcdefghijklmnopqrstuvwxyz0123456789";
     $s='';
     for($i=0;$i<$len;$i++) $s.=$chars[rand(0,strlen($chars))];
     return $s;
@@ -27,7 +27,7 @@ function fetch_embed_code() {
     $fullname = $shortname.".wordpress";
     $embed_data = array('shortname'=>$shortname, 'fullname'=>$fullname);
 
-    $from_server = json_decode(wp_remote_fopen("http://tal.ki/new-embed-code/wordpress/?json=1"), $assoc=true);    
+    $from_server = json_decode(wp_remote_fopen("http://talkiforum.com/new-embed-code/wordpress/?json=1"), $assoc=true);    
     if(is_array($from_server) && array_key_exists("shortname", $from_server)) {
         $embed_data = $from_server;
     }
@@ -49,10 +49,10 @@ function create_talki_page() {
     
     $page_named_forum = get_page_by_title('Forum');
     $title = "Forum";
-    if($page_named_forum) $title = "Tal.ki Forum";
+    if($page_named_forum) $title = "Talki Forum";
     
     $my_post['post_title'] = $title;
-    $my_post['post_content'] = "Talki forum will be embedded on this page";
+    $my_post['post_content'] = "Talki forum will be embedded on this page.  If you are having problems, please head to http://help.talkiforum.com/home/support";
     $my_post['post_status'] = 'publish';
     $my_post['post_author'] = 1;
     $my_post['post_category'] = array(1);
@@ -64,7 +64,6 @@ function create_talki_page() {
     update_option('talki_pageid', $pid);
 }
 
-add_action('wp_head', 'talki_init');
 
 function talki_lol($content) {    
     $embed_data = get_embed_data();    
@@ -81,10 +80,28 @@ function talki_lol($content) {
         $wrap_pre .= "<div style='background-color: white;'>";
         $wrap_post .= "</div>";
     }
+
+    if($theme_data['Template'] == "twentyeleven") {
+        $wrap_pre .= <<<STYLE
+            <style type="text/css">
+                .singular .entry-header, .singular .entry-content, .singular footer.entry-meta, .singular #comments-title {
+                width: 100%; 
+            }                
+
+            .singular #content, .left-sidebar.singular #content {
+                margin: 0 1.5%;
+            }
+
+            #main { padding: 0; }
+
+            .singular.page .hentry { padding: 0; }
+            </style>
+STYLE;
+    }
     
     if(array_key_exists('site_key',$embed_data) && is_user_logged_in()) {
         $site_key = $embed_data['site_key'];
-       $user = wp_get_current_user();
+        $user = wp_get_current_user();
        
        $args = array(
            'uid'=>$user->ID,
@@ -104,62 +121,67 @@ function talki_lol($content) {
     }
     $extra="";
     $footer = get_option('talki_footer');
-    if($footer) $extra = '<div style="font-size:80%; text-align:center;" class="talki_promo">get your own <a href="http://tal.ki/">embeddable forum</a> with Talki</div>';
+    if($footer) $extra = '<div style="font-size:80%; text-align:center;" class="talki_promo">get your own <a href="http://talkiforum.com/">embeddable forum</a> with Talki</div>';
 
     return <<<EMBED
 $wrap_pre    
-<script type="text/javascript" src="http://$fullname.embed.tal.ki/embed/1.js?$args"></script>
+<script type="text/javascript" src="http://$fullname.embed.talkiforum.com/embed/1.js?$args"></script>
 $wrap_post
 $extra
 EMBED;
 }
 
 function talki_init() {    
-    $talkipage_id = get_option('talki_pageid');
-    if(!$talkipage_id) { 
-        create_talki_page();
-    }
-    
-    $talkipage_id = get_option('talki_pageid');
-    if(is_page($talkipage_id)) {
-        
-        $page = get_page($talkipage_id);
+    $talki_page_id = get_option('talki_pageid');
+
+    if(is_page($talki_page_id)) {        
+        $page = get_page($talki_page_id);        
         if($page && $page->post_status!='publish') {
             $page->post_status = 'publish';
             wp_update_post($page);
         }
+
         add_filter("the_content", "talki_lol");
     }
 }
 
 /* admin menus */
-add_action('admin_menu', 'talki_add_admin_menu');
 function talki_add_admin_menu() {    
     add_options_page('Talki', 'Talki Options', 'administrator', 'talkioptions', 'talki_admin_options');
 }
 
 function talki_admin_options() {
-    $pageurl = get_page_link(get_option('talki_pageid'));
-    echo "<h2>Tal.ki - the easiest way to embed a forum</h2>";
-    echo "Forum is visible at this address: <a target='_blank' href='$pageurl'>$pageurl</a>";
-    
+
+    $pageurl = get_page_link(get_option('talki_pageid'));    
+    echo <<<STUFF
+        <h2>Talki - the easiest way to embed a forum</h2>
+        Forum is visible <a target='_blank' href='$pageurl'>here</a>";
+STUFF;
+
     if($_POST && $_POST['talki_options']) {  
         update_option('talki_footer', $_POST['talki_footer']=="on");        
     }
 
+    if($_POST && $_POST['talki_options']) {  
+        update_option('talki_wider', $_POST['talki_wider']=="on");        
+    }
+
     $woot = "";
+    $wider = "";
     if(get_option("talki_footer")) $woot='checked="checked"';
+    if(get_option("talki_wider")) $wider='checked="checked"';
+
     echo <<<STUFF
      <form name="form_lol" method="post" action="options-general.php?page=talkioptions" style="margin: 15px 0">  
-         <input type="hidden" name="talki_options" value="go"/>
-         <input type="checkbox" name="talki_footer" $woot/>&nbsp;<strong>Keep Tal.ki free</strong>. Please support our plugin by displaying a link back to our site on your forum's footer
-         <br>
-         <input type="submit" name="submit" value="Update the setting" />  
+        <input type="hidden" name="talki_options" value="go"/>
+        <input type="checkbox" name="talki_footer" $woot/>&nbsp;<strong>Keep Talki free</strong>. Please support our plugin by displaying a link back to our site on your forum's footer
+        <br>
+        <input type="submit" name="submit" value="Update the setting" />  
     </form>
     
 <p>Members will be automatically notified of their responses. You can promote members to moderator and admin status.
 
-<p>Learn more at http://tal.ki/feature-tour/
+<p>Learn more at http://talkiforum.com/feature-tour/
 
 Suggest a feature at http://talki.uservoice.com/
 
@@ -184,7 +206,7 @@ STUFF;
 }
 
 
-/* Tal.ki SSO stuff */
+/* Talki SSO stuff */
 function serialize_fields($fields) {
     ksort($fields);
     $data = array();
@@ -209,29 +231,63 @@ function generate_signature($fields, $secret_key) {
 }
 
 
+// 1.3 - Activation/deactivation
+
+function talki_activate() {
+    /*
+     *  We want to create a page for Talki when it's installed or when the page was deleted
+     *  and otherwise publish an existing page
+     */
+    $talki_page_id = get_option('talki_pageid');
+
+    if($talki_page_id) {        
+        $page = get_page($talki_page_id);
+        if($page) {
+            $page->post_status = 'publish';
+            wp_update_post($page);
+        } else {
+            // someone might have deleted the page, recreate it
+            create_talki_page();    
+        }
+    } else {
+        create_talki_page();
+    }
+}
+
+function talki_deactivate() {
+    // hide the Talki forum page if it exists     
+    $talki_page_id = get_option('talki_pageid');
+    if($talki_page_id) {
+        $page = get_page($talki_page_id);
+        if($page) {
+            $page->post_status = 'draft';
+            wp_update_post($page);
+        }        
+    }
+}
 
 
 
-
+/* Widgets */
 
 function widget_talki_recent_posts($num) {
-    $talkipage_id = get_option('talki_pageid');
-    if($talkipage_id) {        
-        $domain=get_page_link($talkipage_id);
+    $talki_page_id = get_option('talki_pageid');
+    if($talki_page_id) {        
+        $domain=get_page_link($talki_page_id);
         $embed_data = get_embed_data();
         $fullname = $embed_data['fullname'];
-        echo '<script type="text/javascript" src="http://api.tal.ki/v1/widgetembed/?widget=recenttopics&fullname='.$fullname.'&uid=asdfasasd&numitems='.$num.'&target=_top&domain='.$domain.'"></script>';
+        echo '<script type="text/javascript" src="http://api.talkiforum.com/v1/widgetembed/?widget=recenttopics&fullname='.$fullname.'&uid=asdfasasd&numitems='.$num.'&target=_top&domain='.$domain.'"></script>';
     }    
 }
  
 class TalkiRecentPostsWidget extends WP_Widget {
     /** constructor */
     function TalkiRecentPostsWidget() {
-        $options = array( 'description' => __( "Shows recent posts from your Tal.ki embedded forum") );
-        parent::WP_Widget(false, $name = 'Talki Recent Posts', $options);	
+        $options = array( 'description' => __( "Shows recent posts from your Talki embedded forum") );
+        parent::WP_Widget(false, $name = 'Talki Recent Posts', $options);   
     }
 
-    function widget($args, $instance) {		
+    function widget($args, $instance) {     
         extract( $args );
         $title = apply_filters('widget_title', $instance['title']);
         $num = $instance['num'];
@@ -247,13 +303,13 @@ class TalkiRecentPostsWidget extends WP_Widget {
     }
 
     /** @see WP_Widget::update */
-    function update($new_instance, $old_instance) {				
+    function update($new_instance, $old_instance) {             
         return $new_instance;
     }
 
     /** @see WP_Widget::form */
-    function form($instance) {				
-        $title = esc_attr(isset($instance['title']) ? $instance['title'] : "Tal.ki Recent Topics");
+    function form($instance) {              
+        $title = esc_attr(isset($instance['title']) ? $instance['title'] : "Talki Recent Topics");
         $num = esc_attr(isset($instance['num']) ? $instance['num'] : 5);
         ?>
             <p>
@@ -263,16 +319,24 @@ class TalkiRecentPostsWidget extends WP_Widget {
             
             <p>
                 <label for="<?php echo $this->get_field_id('num'); ?>"><?php _e('Number of recent posts:'); ?> </label></p>
-	            <select id="<?php echo $this->get_field_id('num'); ?>" name="<?php echo $this->get_field_name('num'); ?>">
+                <select id="<?php echo $this->get_field_id('num'); ?>" name="<?php echo $this->get_field_name('num'); ?>">
                 <?php
-        		for ( $i = 1; $i <= 20; ++$i )
-        			echo "<option value='$i' " . ( $num == $i ? "selected='selected'" : '' ) . ">$i</option>";
+                for ( $i = 1; $i <= 20; ++$i )
+                    echo "<option value='$i' " . ( $num == $i ? "selected='selected'" : '' ) . ">$i</option>";
                 ?>
-            	</select>
+                </select>
             </p>            
         <?php 
     }
 
 } // class TalkiRecentPostsWidget
 
+/* all actions and hooks */
+
+add_action('wp_head', 'talki_init');
+add_action('admin_menu', 'talki_add_admin_menu');
 add_action('widgets_init', create_function('', 'return register_widget("TalkiRecentPostsWidget");'));
+
+register_activation_hook( __FILE__, 'talki_activate' );
+register_deactivation_hook( __FILE__, 'talki_deactivate' );
+

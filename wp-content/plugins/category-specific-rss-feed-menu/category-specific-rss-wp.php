@@ -1,7 +1,7 @@
 <?php
 /*
   Plugin Name: Category Specific RSS Menu
-  Version: v1.11
+  Version: v1.13
   Plugin URI: https://www.tipsandtricks-hq.com/wordpress-plugin-for-category-specific-rss-feed-subscription-menu-325
   Author: Tips and Tricks HQ, Ruhul Amin
   Author URI: https://www.tipsandtricks-hq.com/
@@ -12,10 +12,10 @@
 define('CAT_SPEC_RSS_FOLDER', dirname(plugin_basename(__FILE__)));
 define('CAT_SPEC_RSS_URL', get_option('siteurl') . '/wp-content/plugins/' . CAT_SPEC_RSS_FOLDER);
 
-$category_specific_rss_version = 1.11;
+$category_specific_rss_version = 1.13;
 
 include_once('csrss-misc-functions.php');
-include_once('simple_html_dom.inc');
+include_once('simple_html_dom.php');
 
 add_option('rss_category_1_name', 'All Topics');
 add_option('rss_category_1_link', get_option('siteurl') . '/?feed=rss2');
@@ -76,7 +76,7 @@ function show_rss_menu($atts=array()) {
     if ($show_all_cat == '1') {                                  //Categories
         // Display Categories and RSS feed for all categories
         $html = show_category_rss_for_all_cats();           // Grab HTML for Caregories
-        $html = str_get_html($html);                        // Transform HTML into DOM
+        $html = csr_str_get_html($html);                        // Transform HTML into DOM
         $es = $html->find('li a');
         foreach ($html->find('a') as $e) {
             $e->href .= 'feed/';
@@ -88,7 +88,7 @@ function show_rss_menu($atts=array()) {
     if ($show_all_aut == '1') {                                //Authors
         // Display Categories and RSS feed for all categories
         $html = show_author_rss_for_all_auts();           // Grab HTML for Authors
-        $html = str_get_html($html);                        // Transform HTML into DOM
+        $html = csr_str_get_html($html);                   // Transform HTML into DOM
         $es = $html->find('li a');
         foreach ($html->find('a') as $e) {
             $e->href .= 'feed/';

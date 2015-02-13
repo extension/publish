@@ -6,6 +6,9 @@ Template: twentythirteen
 
 @import url("../twentythirteen/style.css");
 
+
+
+
 /*.site-header {outline:2px solid blue;}*/
 
 .clearing {clear:both;}
@@ -20,12 +23,13 @@ Template: twentythirteen
 .site-title {color:#f47B28;}
 
 @media (min-width: 999px) {
-  .site-title {font-size:50px;}
+  .site-title {font-size:50px;padding-top:20px;}
   .masthead-inner {margin:0 auto; max-width:1080px; 
 /*    border:1px solid magenta;*/
     }
   .site-header .home-link {
-    width:50%; 
+    width:45%; 
+	padding-right: 5%;
     float:left;
   }
   .logo-group {float:left; display:block; width:50%;}
@@ -34,4 +38,29 @@ Template: twentythirteen
     }
   
 }
+
+@media (max-width: 999px) {
+	.site-header .home-link {
+    width:55%; 
+  }
+}
+@media (max-width: 643px) {
+	.site-header .home-link {
+    width:65%; 
+  }
+}
+
+
 .logo-group-logo img {width:100%; max-width:200px; margin:0 auto; padding:5px;}
+
+body .site-main a, .site-footer .widget a, .comment-body .comment-meta a { 
+	color: #7E3F98;
+}
+.navbar, .widget, .archive-header, .site-footer{
+	background-color:#DFDFDF;
+}
+	
+button, input, textarea{
+	border: 2px solid #A7A7A7;
+}
+	

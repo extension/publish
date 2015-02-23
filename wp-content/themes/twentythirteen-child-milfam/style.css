@@ -16,7 +16,9 @@ Template: twentythirteen
 
 .logo-group {
 /*  border:1px solid lime;*/
-  padding:10px;}
+  padding:10px;
+  
+ }
 .logo-group-logo {float:left;display:block; width:33%; height:100px; text-align:center;}
 
 
@@ -32,7 +34,13 @@ Template: twentythirteen
 	padding-right: 5%;
     float:left;
   }
-  .logo-group {float:left; display:block; width:50%;}
+  .logo-group {
+	  float:left; 
+	  display:block; 
+	  width:40%;
+	  margin-left: 10%;
+	  margin-top: 60px;  
+}
   .logo-group-logo {float:left;display:block; width:33.3333333333%;
 /*    border:1px solid #ccc;*/
     }
@@ -51,10 +59,13 @@ Template: twentythirteen
 }
 
 
-.logo-group-logo img {width:100%; max-width:200px; margin:0 auto; padding:5px;}
+.logo-group-logo img {width:100%; max-width:130px; margin:0 auto; padding:5px;}
 
-body .site-main a, .site-footer .widget a, .comment-body .comment-meta a { 
+body .site-main a, .site-footer .widget a, .comment-body .comment-meta a, .nav-menu>.current_page_item a, .nav-menu .current-menu-parent a{ 
 	color: #7E3F98;
+}
+ul.nav-menu ul a:hover{
+	background-color:#7E3F98;
 }
 .navbar, .widget, .archive-header, .site-footer{
 	background-color:#DFDFDF;

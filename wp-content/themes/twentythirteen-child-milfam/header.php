@@ -24,6 +24,7 @@
 	<title><?php wp_title( '|', true, 'right' ); ?></title>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+	<link rel="icon" type="image/png" href="<?php echo bloginfo('stylesheet_directory');?>/images/favicon.png" />
 	<!--[if lt IE 9]>
 	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
 	<![endif]-->
@@ -38,7 +39,7 @@
 				<h1 class="site-title"><img src="<?php echo bloginfo('stylesheet_directory');?>/images/MFLN_Logo_2C.png" width="100%" /></h1>
 				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 			</a>
-			
+
 			<div class="logo-group">
 			  <div class="logo-group-logo"><img src="<?php echo bloginfo('stylesheet_directory');?>/images/usdod-400x200.png" /></div>
 			  <div class="logo-group-logo"><img src="<?php echo bloginfo('stylesheet_directory');?>/images/usda-400x200.png" /></div>

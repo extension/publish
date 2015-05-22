@@ -32,7 +32,7 @@
 
 <body <?php body_class(); ?>>
 <div class='nonmobile hidden-phone'>
-    <script src="https://www.extension.org/javascripts/global_nav_public.js" type="text/javascript"></script>
+    <script src="https://assets.extension.org/javascripts/global_nav_public.js" type="text/javascript"></script>
 </div>
   
 	<div id="page" class="hfeed site">

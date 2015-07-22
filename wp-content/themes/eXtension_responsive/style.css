@@ -31,10 +31,10 @@ src: url(http://themes.googleusercontent.com/static/fonts/sanchez/v1/9T6om-IyqE2
 }
 
 .sidebar .post-navigation .nav-links,
-.sidebar .entry-header, .sidebar .entry-content, 
+.sidebar .entry-header, .sidebar .entry-content,
 .sidebar .entry-summary, .sidebar .entry-meta,
-.sidebar .comments-title, .sidebar .comment-list, 
-.sidebar .must-log-in, .sidebar .comment-reply-title, 
+.sidebar .comments-title, .sidebar .comment-list,
+.sidebar .must-log-in, .sidebar .comment-reply-title,
 .sidebar .comment-navigation, .sidebar .comment-respond .comment-form {
 	max-width: 1040px;
 	padding: 0 261px 0 15px;
@@ -132,6 +132,10 @@ img.alignright{
  margin-right: 0;
 }
 
+.entry-content img.alignleft, .entry-content .wp-caption.alignleft{
+ margin-left: 0;
+}
+
 @media (max-width: 1069px) {
 	.site-main .widget-area {
 		margin-right: 0px;
@@ -149,10 +153,10 @@ img.alignright{
 		margin-left: 15px;
 	}
 	.sidebar .post-navigation .nav-links,
-.sidebar .entry-header, .sidebar .entry-content, 
+.sidebar .entry-header, .sidebar .entry-content,
 .sidebar .entry-summary, .sidebar .entry-meta,
-.sidebar .comments-title, .sidebar .comment-list, 
-.sidebar .must-log-in, .sidebar .comment-reply-title, 
+.sidebar .comments-title, .sidebar .comment-list,
+.sidebar .must-log-in, .sidebar .comment-reply-title,
 .sidebar .comment-navigation, .sidebar .comment-respond .comment-form {
 	max-width: 1040px;
 	padding: 0 15px;
@@ -177,15 +181,15 @@ img.alignright{
 		font-size: 30px;
 		paddint-top: 0;
 	}
-	
+
 	.site-description{
 		display: none;
 	}
-	
+
 	.site-header{
 		max-height: 120px;
 	}
-	
+
 }
 
 /* Mobile devices */
@@ -194,4 +198,3 @@ img.alignright{
 		font-size: 20px;
 	}
 }
-

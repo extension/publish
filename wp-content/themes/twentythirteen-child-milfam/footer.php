@@ -12,13 +12,13 @@
 ?>
 
 		</div><!-- #main -->
-		
-		
-		
-		
+
+
+
+
 		<footer id="colophon" class="site-footer" role="contentinfo">
 			<?php get_sidebar( 'main' ); ?>
-			<span id="extension_icon_512" class="pull-left noprint"><img id="extension_logo" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/extension_logo.jpg" alt="eXtension" width="58" height="58"></span>
+			<span id="extension_icon_512" class="pull-left noprint"><img id="extension_logo" src="<?php echo get_stylesheet_directory_uri(); ?>/images/extension_logo.jpg" alt="eXtension" width="58" height="58"></span>
         <ul class="inline noprint">
           <li><a href="http://www.extension.org/main/partners">Institutional Partners</a></li>
           <li><a href="http://www.extension.org/main/privacy">Privacy</a></li>

@@ -123,15 +123,19 @@ function theme_options_do_page() {
  * Sanitize and validate input. Accepts an array, return a sanitized array.
  */
 function theme_options_validate( $input ) {
-	
+
 	// Say our text option must be safe text with no HTML tags
 	$input['sidebar_width'] = (int) wp_filter_nohtml_kses( $input['sidebar_width'] );
-	
+
 	$input['sidebar_width'] = (($input['sidebar_width'] > 400 || $input['sidebar_width'] < 100) ? '' : $input['sidebar_width']);
-	
+
 	return $input;
 }
 
+function remove_footer_admin () {
+  echo 'Thank you for creating with <a href="https://wordpress.org/">WordPress</a> | <a href="http://www.extension.org/main/termsofuse" target="_blank">Terms of Use</a>';
+}
+add_filter('admin_footer_text', 'remove_footer_admin');
 
 register_widget( 'Meta_Compact' );
 

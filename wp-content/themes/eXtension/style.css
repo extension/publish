@@ -53,7 +53,7 @@ body {
 #extensionNav li {
 	padding: 0;
 	margin: 0;
-	list-style: none; 
+	list-style: none;
 	display: inline;
 }
 
@@ -166,7 +166,7 @@ h2, h2 a, h2 a:hover, h2 a:visited, h3, h3 a, h3 a:hover, h3 a:visited, #sidebar
 	font-weight: bold;
 }
 
-.commentlist li .avatar { 
+.commentlist li .avatar {
 	float: right;
 	border: 1px solid #eee;
 	padding: 2px;
@@ -271,10 +271,10 @@ body {
 	}
 
 #headerimg {
-	
+
 	margin: 0px 0px 193px 0px;
 	height: 112px;
-	background-image:url(images/ex_logo_ithree.png);
+	background-image:url(images/ex_logo_ithree-tagline.png);
 	background-repeat:no-repeat;
 	background-position: 728px 14px;
 	/* background-color: #fff; */
@@ -298,18 +298,18 @@ h1 {
 
 
 .navbar {
-	color: #000; 
-	background: #c05412 url(images/navbarbgnd.gif) repeat-x; 
-	width: 963px; 
+	color: #000;
+	background: #c05412 url(images/navbarbgnd.gif) repeat-x;
+	width: 963px;
 	margin: 0 auto;
 	padding:0;
 	overflow:auto;
 	height:39px;
 }
-.globalnav { 
+.globalnav {
 	float:left; text-align:left;
-	padding-left:10px; 
-	width:540px; 
+	padding-left:10px;
+	width:540px;
 	color:#000;
 }
 .globalnav ul {
@@ -317,38 +317,38 @@ h1 {
 	margin:0;
 	list-style:none;
 	text-align:left;
-	padding:.4em 0; 
+	padding:.4em 0;
 	color:#000;
 }
 .globalnav ul li {
 	float:left;
 	display:block;
-	border-right: 1px solid #b04c0f; 
+	border-right: 1px solid #b04c0f;
 	color:#000;
 }
 .globalnav ul li a {
-	display:block; 
-	padding: .5em .7em; 
-	text-decoration:none; 
-	color:#fff; 
+	display:block;
+	padding: .5em .7em;
+	text-decoration:none;
+	color:#fff;
 	text-transform: capitalize;
 	line-height:1.55em;
 	font-size: 1.2em;}
 .globalnav ul li a:hover {
-	color: #000; 
+	color: #000;
 	text-decoration:none;
 }
 
-.searchbar { 
-	float: right; 
-	padding-left: 0px; 
-	padding-top: 0px; 
-	padding-right: 5px; 
-	padding-bottom: 0px; 
-	border: 0px solid #000; 
+.searchbar {
+	float: right;
+	padding-left: 0px;
+	padding-top: 0px;
+	padding-right: 5px;
+	padding-bottom: 0px;
+	border: 0px solid #000;
 }
 .searchbar form div input[type="text"] {
-	width: 190px; 
+	width: 190px;
 	font-size: 1.2em;
 }
 
@@ -598,10 +598,10 @@ select {
 	padding: 2px;
 	}
 #respond:after {
-		content: "."; 
-	    display: block; 
-	    height: 0; 
-	    clear: both; 
+		content: ".";
+	    display: block;
+	    height: 0;
+	    clear: both;
 	    visibility: hidden;
 	}
 #commentform #submit {
@@ -629,7 +629,7 @@ select {
 	list-style: none;
 
 	}
-.commentlist li ul li { 
+.commentlist li ul li {
 	margin-right: -5px;
 	margin-left: 10px;
 }
@@ -737,7 +737,7 @@ blockquote cite {
 .hidden {
 	display: none;
 	}
-	
+
 .screen-reader-text {
      position: absolute;
      left: -1000em;
@@ -848,17 +848,17 @@ color: white;
 }
 
 .ddsmoothmenu ul li a.selected{ /*CSS class that's dynamically added to the currently active menu items' LI A element*/
-background: #b04c0f; 
+background: #b04c0f;
 color: white;
 }
 
 .ddsmoothmenu ul li a:hover{
-	
+
 	background: #c05412 url(images/navbarbgnd_rotated.gif) repeat-x;
 	background-color: #eeac7b; /* background of menu items during onmouseover (hover state)*/
 	color: white;
 }
-	
+
 /*1st sub level menu*/
 .ddsmoothmenu ul li ul{
 position: absolute;
@@ -920,5 +920,3 @@ background: silver;
 .toplevelshadow{ /*shadow opacity. Doesn't work in IE*/
 opacity: 0.8;
 }
-
-

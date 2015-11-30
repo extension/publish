@@ -98,6 +98,7 @@ Template: twentythirteen
 body .site-main a, .site-footer .widget a, .comment-body .comment-meta a, .nav-menu>.current_page_item a, .nav-menu .current-menu-parent a{
 	color: #7E3F98;
 }
+.site-footer .widget a{color: #A79FBC;}
 ul.nav-menu ul a:hover{
 	background-color:#7E3F98;
 }

@@ -24,14 +24,14 @@
 <?php
 $js_dir = get_bloginfo('template_directory') . '/js';
 $im_dir = get_bloginfo('template_directory') . '/images/';
-wp_enqueue_script('jquery_min', "$js_dir/jquery-1.3.2.min.js"); 
+wp_enqueue_script('jquery_min', "$js_dir/jquery-1.3.2.min.js");
 
 
 wp_enqueue_script('ddsmoothmenu', "$js_dir/ddsmoothmenu.js");
 
-?> 
+?>
  <?php wp_head(); ?>
-<script type='text/javascript'> 
+<script type='text/javascript'>
 
 
 
@@ -55,19 +55,19 @@ ddsmoothmenu.init({
 
 
 
-$(document).ready(function() { 
-	
-	
-	
-	
-	
-}); 
-</script> 
+$(document).ready(function() {
+
+
+
+
+
+});
+</script>
 
 
 </head>
 <body <?php body_class(); ?>>
-<script src="https://assets.extension.org/javascripts/global_nav_internal.js" type="text/javascript"></script>
+<script src="https://assets.extension.org/javascripts/global_shortcuts_bar_internal.js" type="text/javascript"></script>
 <div id="page">
 
 
@@ -82,23 +82,23 @@ $(document).ready(function() {
 <div class = "searchbar">
 				<?php get_search_form(); ?>
 	</div>
- <ul> 
-           <?php 
-		   
-		   
+ <ul>
+           <?php
+
+
 		   wp_list_pages('sort_column=menu_order&title_li=');
-		   
-		   
+
+
 		   ?>
-         </ul> 
-		 
-	
+         </ul>
+
+
 <br style="clear: left" />
 </div>
 
-</div>		
-		 
-		 
-		 
-		 
+</div>
+
+
+
+
 <hr />

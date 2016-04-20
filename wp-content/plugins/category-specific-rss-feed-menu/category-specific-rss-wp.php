@@ -1,7 +1,7 @@
 <?php
 /*
   Plugin Name: Category Specific RSS Menu
-  Version: v1.13
+  Version: v2.0
   Plugin URI: https://www.tipsandtricks-hq.com/wordpress-plugin-for-category-specific-rss-feed-subscription-menu-325
   Author: Tips and Tricks HQ, Ruhul Amin
   Author URI: https://www.tipsandtricks-hq.com/
@@ -9,10 +9,16 @@
   License: GPLv2 or later
  */
 
+//Plugin Slug - csr
+
+if (!defined('ABSPATH')){
+    exit;//Exit if accessed directly
+}
+
 define('CAT_SPEC_RSS_FOLDER', dirname(plugin_basename(__FILE__)));
 define('CAT_SPEC_RSS_URL', get_option('siteurl') . '/wp-content/plugins/' . CAT_SPEC_RSS_FOLDER);
 
-$category_specific_rss_version = 1.13;
+$category_specific_rss_version = 2.0;
 
 include_once('csrss-misc-functions.php');
 include_once('simple_html_dom.php');
@@ -34,11 +40,12 @@ function show_category_rss_for_all_cats() {  // generate HTML for all categories
 
     $output = '<div class="cat_specific_rss">';
 
-    if (get_option('cat_rss_show_image_on_left') == '1')
+    if (get_option('cat_rss_show_image_on_left') == '1'){
         $output .= '<ul class="cat_show_image">';
-    else
+    }
+    else{
         $output .= '<ul>';
-
+    }
 
     if (get_option('cat_rss_show_post_count') == '1') {
         $output .= wp_list_categories('echo=0&orderby=name&show_count=1&title_li=');

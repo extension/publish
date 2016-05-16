@@ -23,7 +23,7 @@ Template: twentythirteen
 
 @font-face {
 font-family: Sanchez;
-src: url(http://themes.googleusercontent.com/static/fonts/sanchez/v1/9T6om-IyqE2CuKLLQr0lcgLUuEpTyoUstqEm5AMlJo4.woff);
+src: url(https://themes.googleusercontent.com/static/fonts/sanchez/v1/9T6om-IyqE2CuKLLQr0lcgLUuEpTyoUstqEm5AMlJo4.woff);
 }
 
 .entry-content a, .comment-content a, .entry-meta a, a {
@@ -82,7 +82,7 @@ src: url(http://themes.googleusercontent.com/static/fonts/sanchez/v1/9T6om-IyqE2
 }
 
 .site-header .home-link{
-	background-image:url(assets/images/extension_slogan.png);
+	background-image:url(assets/images/ex_logo_color.png);
 	background-repeat: no-repeat;
 	background-position: right 38px	;
 	position: relative;

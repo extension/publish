@@ -1,0 +1,10 @@
+/*
+Theme Name: eXtension 2013 (Twenty Thirteen child)
+Description: This variation displays an eXtension footer
+Template: twentythirteen
+*/
+
+
+.extension-meta-footer {text-align:center;}
+.extension-meta-footer li {display:inline-block;}
+.extension-meta-footer li a {padding: 12px 10px;}

@@ -12,21 +12,23 @@
 ?>
 
 		</div><!-- #main -->
-		
-		
-		
-		
+
+
+
+
 		<footer id="colophon" class="site-footer" role="contentinfo">
 			<?php get_sidebar( 'main' ); ?>
-			<span id="extension_icon_512" class="pull-left noprint"><img id="extension_logo" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/extension_logo.jpg" alt="eXtension" width="58" height="58"></span>
-        <ul class="inline noprint">
-          <li><a href="http://www.extension.org/main/partners">Institutional Partners</a></li>
-          <li><a href="http://www.extension.org/main/privacy">Privacy</a></li>
-          <li><a href="http://www.extension.org/main/contact_us">Contact Us</a></li>
-          <li><a href="http://www.extension.org/main/disclaimer">Disclaimer</a></li>
-          <li class="last"><a href="http://www.extension.org/main/termsofuse">Terms of Use</a></li>
+
+      <div class="extension-meta-footer">
+        <ul>
+          <li><a href="https://extension.org/membership/current/">eXtension Members</a></li>
+          <li><a href="https://extension.org/privacy/">Privacy</a></li>
+          <li><a href="https://extension.org/contact/">Contact Us</a></li>
+          <li><a href="https://extension.org/terms-of-use/">Terms of Use</a></li>
         </ul>
         <p>&nbsp;© <?php echo date('Y'); ?> eXtension. All rights reserved.</p>
+      </div>
+      
 			<div class="site-info">
 				<?php do_action( 'twentythirteen_credits' ); ?>
 			</div><!-- .site-info -->

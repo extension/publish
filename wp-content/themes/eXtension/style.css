@@ -18,6 +18,9 @@ Tags: orange, custom header, fixed width, two columns, widgets
 
 */
 
+.extension-meta-footer {text-align:center; clear:both; display:block;}
+.extension-meta-footer li {display:inline-block;}
+.extension-meta-footer li a {padding: 12px 10px;}
 
 
 /* Begin Typography & Colors */
@@ -95,7 +98,7 @@ border: 1px solid #ddd;
 #footer { clear:both; width: 100%; position: relative; margin-top: 2em; background: #ea7b37; color: #fff; padding-top: 20px; padding-bottom: 10px; border-top: 1px solid #b54a09;}
 #footer p {width: 898px; margin: 0 30px 15px; text-align:left;line-height:1.8em;font-size:1.2em;}
 #footer p.copyright {font-size:1.2em; margin-bottom:0;}
-#footer ul { position: relative; margin: 0 auto; padding:0; width: 890px; text-align: right; list-style: none;top:-2.2em;}
+
 #footer ul li { margin:0; display: inline; padding-right: .5em; padding-left: .5em; border-right: 1px solid #f7b077; font-size:1em;}
 #footer ul li.last {border:0;}
 #footer ul li a { text-decoration: underline; color: #fff; text-transform: lowercase; margin:0;padding:0; font-size:1.2em;}

@@ -12,14 +12,14 @@
 
 		</div><!-- #main -->
     <div class="extension-meta-footer">
-          <ul>
-            <li><a href="https://extension.org/membership/current/">eXtension Members</a></li>
-            <li><a href="https://extension.org/privacy/">Privacy</a></li>
-            <li><a href="https://extension.org/contact/">Contact Us</a></li>
-            <li><a href="https://extension.org/terms-of-use/">Terms of Use</a></li>
-          </ul>
-          <p>&nbsp;© <?php echo date('Y'); ?> eXtension. All rights reserved.</p
-        </div>
+      <ul>
+        <li><a href="https://extension.org/membership/current/">eXtension Members</a></li>
+        <li><a href="https://extension.org/privacy/">Privacy</a></li>
+        <li><a href="https://extension.org/contact/">Contact Us</a></li>
+        <li><a href="https://extension.org/terms-of-use/">Terms of Use</a></li>
+      </ul>
+      <p>&nbsp;© <?php echo date('Y'); ?> eXtension. All rights reserved.</p>
+    </div>
 		<footer id="colophon" class="site-footer" role="contentinfo">
 			<?php get_sidebar( 'main' ); ?>
 

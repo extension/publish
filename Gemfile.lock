@@ -48,7 +48,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  capatross
+  capatross!
   capistrano (= 2.15.5)
   mysql2
   railsless-deploy

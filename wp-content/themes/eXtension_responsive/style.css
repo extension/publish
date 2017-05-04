@@ -137,6 +137,14 @@ img.alignright{
  margin-left: 0;
 }
 
+.search-page {margin:auto; width:70%}
+
+#cse input {font-size:1.3em;padding:4px;outline:#aaa solid 1px !important; background: #eee;}
+#cse input:focus {outline:#2C3984 1px solid !important;}
+#cse .gsc-search-button input {font-size:1em; padding:.5em 1em !important; height:2.5em; line-height:1.5em;display:block; outline:none !important;}
+
+.gsc-search-box {max-width: 60em;}
+
 @media (max-width: 1069px) {
 	.site-main .widget-area {
 		margin-right: 0px;
@@ -193,7 +201,7 @@ img.alignright{
 	.site-header{
 		min-height: 100px;
 	}
-
+.search-page {margin:auto; width:100%}
 }
 
 
@@ -210,4 +218,5 @@ img.alignright{
 	.site-header {
 					background-size: 800px auto !important;
 	}
+
 }

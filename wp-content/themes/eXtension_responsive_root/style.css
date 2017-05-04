@@ -1,0 +1,222 @@
+/*
+Theme Name: eXtension responsive root
+Theme URI: http://extension.org/
+Description: Responsive eXtension theme.
+Version: 0.1
+Author: Ivelin Denev
+Author URI: http://extension.org/
+Tags: orange, custom header, responsive, two columns, widgets
+Template: twentythirteen
+
+	eXtension v0.1
+	 http://extension.org/
+
+	This theme was designed and built by eXtension
+
+	The CSS, XHTML and design is released under GPL:
+	http://www.opensource.org/licenses/gpl-license.php
+@import url("assets/bootstrap/css/bootstrap.min.css");
+*/
+
+@import url("../twentythirteen/style.css");
+
+
+@font-face {
+font-family: Sanchez;
+src: url(https://themes.googleusercontent.com/static/fonts/sanchez/v1/9T6om-IyqE2CuKLLQr0lcgLUuEpTyoUstqEm5AMlJo4.woff);
+}
+
+.entry-content a, .comment-content a, .entry-meta a, a {
+	color: #428bca;
+}
+
+.sidebar .post-navigation .nav-links,
+.sidebar .entry-header, .sidebar .entry-content,
+.sidebar .entry-summary, .sidebar .entry-meta,
+.sidebar .comments-title, .sidebar .comment-list,
+.sidebar .must-log-in, .sidebar .comment-reply-title,
+.sidebar .comment-navigation, .sidebar .comment-respond .comment-form {
+	max-width: 1040px;
+	padding: 0 261px 0 15px;
+}
+
+.site-main .widget-area {
+	float: right;
+	width: 223px;
+}
+
+
+.comment-respond, .site-footer {
+	background-color: #fff;
+	border-top: 1px dotted #CCC;
+}
+
+.widget {
+	background-color: #FFF;
+	padding: 20px 0;
+}
+
+.widget .widget-title{
+	font-family: 'Sanchez', serif;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20px;
+	color: #f86f20;
+}
+
+.widget a {
+	color: #333;
+}
+
+.navbar, .archive-header {
+	background-color: #fff;
+	border-bottom: 1px dotted #CCC;
+}
+
+.site-title {
+	padding: 38px 180px 10px 0;
+	font-family: 'Sanchez', serif;
+	font-style: normal;
+	font-weight: bold;
+	color: #f86f20;
+}
+
+.site-header .home-link{
+	background-image:url(assets/images/ex_logo_color.png);
+	background-repeat: no-repeat;
+	background-position: right 38px	;
+	position: relative;
+	margin: 0 auto;
+}
+
+.site-footer {
+	margin-top: 30px;
+	padding-top: 30px;
+	border: 1px solid #ddd;
+}
+.site-footer p{
+	padding-left: 5px;
+	color: #f86f20;
+}
+#extension_icon_512 {
+	width: 64px;
+	height: 64px;
+	display: block;
+	margin: 5px 15px;
+	border: 1px solid #ddd;
+	padding: 2px;
+	float: left;
+}
+#extension_icon_512 img {
+	display: block;
+}
+
+.site-footer ul li {
+	padding: 0 5px;
+	border-right: 1px solid #333;
+	line-height: 100%;
+	display: inline-block;
+}
+
+.site-footer ul{
+	margin-top: 0;
+}
+
+#secondary{
+	margin-bottom: 30px;
+}
+
+img.alignright{
+	margin-left: 0;
+}
+.entry-content img.alignright, .entry-content .wp-caption.alignright{
+ margin-right: 0;
+}
+
+.entry-content img.alignleft, .entry-content .wp-caption.alignleft{
+ margin-left: 0;
+}
+
+.search-page {margin:auto; width:70%}
+
+#cse input {font-size:1.3em;padding:4px;outline:#aaa solid 1px !important; background: #eee;}
+#cse input:focus {outline:#2C3984 1px solid !important;}
+#cse .gsc-search-button input {font-size:1em; padding:.5em 1em !important; height:2.5em; line-height:1.5em;display:block; outline:none !important;}
+
+.gsc-search-box {max-width: 60em;}
+
+@media (max-width: 1069px) {
+	.site-main .widget-area {
+		margin-right: 0px;
+	}
+}
+
+
+@media (max-width: 999px) {
+	.site-title {
+		font-size: 55px;
+	}
+	.site-main .widget-area {
+		float: none;
+		width: 100%;
+		margin-left: 15px;
+	}
+	.sidebar .post-navigation .nav-links,
+.sidebar .entry-header, .sidebar .entry-content,
+.sidebar .entry-summary, .sidebar .entry-meta,
+.sidebar .comments-title, .sidebar .comment-list,
+.sidebar .must-log-in, .sidebar .comment-reply-title,
+.sidebar .comment-navigation, .sidebar .comment-respond .comment-form {
+	max-width: 1040px;
+	padding: 0 15px;
+}
+
+}
+
+/* Collapse oversized image and pulled images after iPad breakpoint. */
+@media (max-width: 767px) {
+	.site-title {
+		font-size: 45px;
+	}
+	.site-header {
+				background-size: 1200px auto !important;
+	}
+}
+
+@media (max-width: 643px) {
+	.site-header .home-link{
+		background-image:url(assets/images/extension.png);
+		background-position: right 18px	;
+		min-height: 100px;
+	}
+	.site-title {
+		font-size: 20px;
+		paddint-top: 0;
+	}
+
+	.site-description{
+		display: none;
+	}
+
+	.site-header{
+		min-height: 100px;
+	}
+.search-page {margin:auto; width:100%}
+}
+
+
+
+/* Mobile devices */
+@media (max-width: 359px) {
+	.site-title {
+		font-size: 20px;
+		padding-right: 5px;
+	}
+	.site-header .home-link{
+		background-image: none;
+	}
+	.site-header {
+					background-size: 800px auto !important;
+	}
+
+}

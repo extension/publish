@@ -3,7 +3,7 @@
 Plugin Name: WP-Polls
 Plugin URI: https://lesterchan.net/portfolio/programming/php/
 Description: Adds an AJAX poll system to your WordPress blog. You can easily include a poll into your WordPress's blog post/page. WP-Polls is extremely customizable via templates and css styles and there are tons of options for you to choose to ensure that WP-Polls runs the way you wanted. It now supports multiple selection of answers.
-Version: 2.73.5
+Version: 2.73.7
 Author: Lester 'GaMerZ' Chan
 Author URI: https://lesterchan.net
 Text Domain: wp-polls
@@ -28,9 +28,8 @@ Text Domain: wp-polls
 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-
 ### Version
-define( 'WP_POLLS_VERSION', '2.73.5' );
+define( 'WP_POLLS_VERSION', '2.73.7' );
 
 
 ### Create Text Domain For Translations
@@ -346,7 +345,6 @@ function check_voted($poll_id) {
 			if(!empty($check_voted_cookie)) {
 				return $check_voted_cookie;
 			}
-
 			return check_voted_ip($poll_id);
 			break;
 		// Logged By Username
@@ -364,7 +362,6 @@ function check_voted_cookie( $poll_id ) {
 		$get_voted_aids = explode( ',', $_COOKIE[ 'voted_' . $poll_id ] );
 		$get_voted_aids = array_map( 'intval', array_map( 'sanitize_key', $get_voted_aids ) );
 	}
-
 	return $get_voted_aids;
 }
 
@@ -534,13 +531,19 @@ function display_pollvote($poll_id, $display_loading = true) {
 
 ### Function: Display Results Form
 function display_pollresult($poll_id, $user_voted = '', $display_loading = true) {
-	do_action('wp_polls_display_pollresult');
 	global $wpdb;
+	do_action( 'wp_polls_display_pollresult', $poll_id, $user_voted );
 	$poll_id = (int) $poll_id;
 	// User Voted
 	if( empty( $user_voted ) ) {
 		$user_voted = array();
 	}
+	if ( is_array( $user_voted ) ) {
+		$user_voted = array_map( 'intval', $user_voted );
+	} else {
+		$user_voted = (int) $user_voted;
+	}
+
 	// Temp Poll Result
 	$temp_pollresult = '';
 	// Most/Least Variables
@@ -703,7 +706,7 @@ function display_pollresult($poll_id, $user_voted = '', $display_loading = true)
 		$temp_pollresult .= "</div>\n";
 		if($display_loading) {
 			$poll_ajax_style = get_option('poll_ajax_style');
-			if((int) $poll_ajax_style['loading'] == 1) {
+			if((int) $poll_ajax_style['loading'] === 1) {
 				$temp_pollresult .= "<div id=\"polls-$poll_question_id-loading\" class=\"wp-polls-loading\"><img src=\"".plugins_url('wp-polls/images/loading.gif')."\" width=\"16\" height=\"16\" alt=\"".__('Loading', 'wp-polls')." ...\" title=\"".__('Loading', 'wp-polls')." ...\" class=\"wp-polls-image\" />&nbsp;".__('Loading', 'wp-polls')." ...</div>\n";
 			}
 		}
@@ -1312,17 +1315,17 @@ function vote_poll() {
 			// Poll Vote
 			case 'process':
 				do_action('wp_polls_vote_poll');
-				$poll_aid = (int) sanitize_key( $_POST["poll_$poll_id"] );
 				$poll_aid_array = array_unique( array_map('intval', array_map('sanitize_key', explode( ',', $_POST["poll_$poll_id"] ) ) ) );
-				$is_real = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->pollsa WHERE polla_aid = %d AND polla_qid = %d", array( $poll_aid, $poll_id ) ) );
+				$polla_aids = $wpdb->get_col( $wpdb->prepare( "SELECT polla_aid FROM $wpdb->pollsa WHERE polla_qid = %d", $poll_id ) );
 
+				$is_real = count( array_intersect( $poll_aid_array, $polla_aids ) ) === count( $poll_aid_array );
 				// The multiple ifs is ugly, I know it.  Feel free to send a PR to fix it
-				if( $is_real > 0 ) {
+				if( $is_real ) {
 					if($poll_id > 0 && !empty($poll_aid_array) && check_allowtovote()) {
 						$is_poll_open = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->pollsq WHERE pollq_id = %d AND pollq_active = 1", $poll_id ) );
 						if ( $is_poll_open > 0 ) {
 							$check_voted = check_voted($poll_id);
-							if ($check_voted === 0) {
+							if ( empty( $check_voted ) ) {
 								if (!empty($user_identity)) {
 									$pollip_user = $user_identity;
 								} elseif ( ! empty( $_COOKIE['comment_author_' . COOKIEHASH] ) ) {
@@ -1340,9 +1343,9 @@ function vote_poll() {
 								if ($poll_logging_method === 1 || $poll_logging_method === 3) {
 									$cookie_expiry = (int) get_option('poll_cookielog_expiry');
 									if ($cookie_expiry === 0) {
-										$cookie_expiry = 30000000;
+										$cookie_expiry = YEAR_IN_SECONDS;
 									}
-									setcookie('voted_' . $poll_id, $poll_aid, ($pollip_timestamp + $cookie_expiry), apply_filters('wp_polls_cookiepath', SITECOOKIEPATH));
+									setcookie( 'voted_' . $poll_id, implode(',', $poll_aid_array ), $pollip_timestamp + $cookie_expiry, apply_filters( 'wp_polls_cookiepath', SITECOOKIEPATH ) );
 								}
 								$i = 0;
 								foreach ($poll_aid_array as $polla_aid) {

@@ -11,6 +11,17 @@
 ?>
 
 		</div><!-- #main -->
+
+    <section class="nifa-usda">
+      <div class="nifa-usda-primary">
+        <p><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/usda-nifa.png" alt="<?php bloginfo( 'name' ); ?>" /></p>
+        <p>This work is supported by the USDA National Institute of Food and Agriculture, New Technologies for Ag Extension project.</p>
+      </div>
+      <div class="nifa-usda-secondary">
+        <p class="sidebar-image"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/cooperative_extension.png" alt="<?php bloginfo( 'name' ); ?>" /></p>
+      </div>
+    </section>
+
     <div class="extension-meta-footer">
       <ul>
         <li><a href="https://extension.org/membership/current/">eXtension Members</a></li>

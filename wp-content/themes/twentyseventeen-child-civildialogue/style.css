@@ -32,6 +32,7 @@ float:left;
 }
 .homepage-card.resource a {
   color: #004d40;
+  color: #00838f;
 }
 
 .flex-container {
@@ -94,11 +95,12 @@ float:left;
 
 
 /* Fact sheet */
-.homepage-card.resource.card-fact-sheet {
+.homepage-card.resource.card-fact_sheet {
   border:2px solid #e1bee7 !important;
   background: #f3e5f5;
-  color: #ba68c8 !important;
 }
+.homepage-card.resource.card-fact_sheet a {color: #ba68c8 !important;}
+
 .card-fact-sheet {background: #f3e5f5 !important; border: 1px solid #e1bee7 !important;}
 .card-fact-sheet h2 {color: #6a1b9a !important;}
 .card-fact-sheet .card-tag-header {color: #7b1fa2;}
@@ -108,6 +110,32 @@ float:left;
 .resource-fact-sheets .resource-term a {color:#f3e5f5 !important;}
 .resource-fact-sheets .resource-tag span {background: #ab47bc;}
 .resource-fact-sheets .card-tag-header {color: #ab47bc;}
+
+
+.homepage-card.resource.card-research_articles_reports_and_datasets {
+  background: #fff3e0;
+  border:2px solid #ffcc80 !important;
+}
+.homepage-card.resource.card-research_articles_reports_and_datasets a {color: #f57c00 !important;}
+.card-research-article-or-report {background: #fff3e0 !important; border: 1px solid #ffcc80 !important;}
+.card-research-article-or-report h2 {color: #e65100 !important;}
+.card-research-article-or-report .card-tag-header {color: #f57c00;}
+.card-research-article-or-report .resource-tag span {background: #fb8c00;}
+.resource-count.research-article-or-report {color: #f57c00;}
+.resource-research-article-or-report .resource-term {background: #ba68c8;}
+.resource-research-article-or-report .resource-term a {color:#f3e5f5 !important;}
+.resource-research-article-or-report .resource-tag span {background: #ab47bc;}
+.resource-research-article-or-report .card-tag-header {color: #ab47bc;}
+
+
+
+
+.homepage-card.resource.card-resource_repositories_and_websites {
+  background: #e3f2fd;
+  border:2px solid #90caf9 !important;
+}
+.homepage-card.resource.card-resource_repositories_and_websites a {color: #1565c0 !important;}
+
 
 /* posts */
 .post .entry-title {font-size:2em !important;}

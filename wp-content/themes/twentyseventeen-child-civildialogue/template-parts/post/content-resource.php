@@ -45,6 +45,20 @@
   }
   ?>
 
+  <?php
+  // $post_target_audience_terms = get_the_tags();
+  $post_target_audience_term_list = wp_get_post_terms($post->ID, 'target_audience', array("fields" => "all"));
+  if ($post_target_audience_term_list) {
+
+    echo '<div class="resource-post-tags clearfix"><p class="card-tag-header">Target Audiences</p>';
+    echo '<ul class="resource-tags">';
+    foreach($post_target_audience_term_list as $tag) {
+      echo '<li class="resource-tag"><span>' . $tag->name . '</span></li>';
+    }
+    echo '</ul></div>';
+  }
+  ?>
+
 	<?php if ( '' !== get_the_post_thumbnail() && ! is_single() ) : ?>
 		<div class="post-thumbnail">
 			<a href="<?php the_permalink(); ?>">

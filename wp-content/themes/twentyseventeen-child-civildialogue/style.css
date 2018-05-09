@@ -1,0 +1,132 @@
+/*
+Theme Name: Civil Dialogue
+Theme URI: extension.org
+Author: eXtension
+Author URI: extension.org/
+Template: twentyseventeen
+Description: A theme for the Civil Dialogue toolkit site
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+
+
+#custom_archive h1 {font-size: 1.4em;}
+.entry-title {font-size:1.25em !important;}
+
+.homepage-card {background: #eee;
+padding: 1em;
+margin: 10px;
+width: 45%;
+float:left;
+}
+.homepage-card h3 a {text-decoration:none; box-shadow:none;}
+.homepage-card h3 a:hover {text-decoration:none; box-shadow:none;}
+.homepage-card ul {padding:0 2em;}
+
+.homepage-card.resource {
+  border:2px solid #80cbc4;
+  background: #e0f2f1;
+  color: #004d40;
+}
+.homepage-card.resource a {
+  color: #004d40;
+}
+
+.flex-container {
+  clear:both;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.flex-container .card {
+  box-shadow: 2px 2px 6px #999;
+  transition: background-color 0.5s ease;
+  background: #e0f7fa;
+  padding: 1em;
+  margin: 10px;
+  width: 30%;
+  height: 250px;
+  height: auto;
+  border: 1px solid #b2ebf2;
+   /* flex-grow: 1;  */
+  /* line-height: 150px; */
+}
+
+.resource-category-overview {font-size:1.2em;}
+.card-tag-header {margin:0 0 5px; font-size:.8em; font-weight:600; color: #00acc1;}
+.resource-tags {margin:0 0; list-style:none;}
+.resource-tag span {background: #4dd0e1; margin-right:10px; color: #fff; padding:2px 6px; font-size:.9em; border-radius: 10px;}
+.card h2{font-size:1.2em; color:#00838f; font-weight:600; flex: 1;}
+.card p { font-size:.9em;}
+.card:hover {
+  background:#fff;
+  box-shadow: 2px 2px 6px #555;
+}
+.card:hover h2 {
+  font-size:1.2em; color:#006064;
+}
+
+
+
+
+.resource-count {
+  text-align:center;
+  font-size:36px; font-weight:600; color:#0097a7;}
+
+.resource-term {font-size:1.4em !important; background: #4dd0e1; padding:8px 10px; margin-bottom:1em; color:#fff !important;}
+.resource-term a {color:#e0f7fa !important;}
+.resource-post .post .entry-header {margin-bottom:0 !important;}
+.resource-post .post .entry-title {margin-bottom:0;}
+.resource-post-tags {margin-bottom:1em;}
+.resource-post-tags li {float:left;}
+
+
+/* Fact sheet */
+.homepage-card.resource.card-fact-sheet {
+  border:2px solid #e1bee7 !important;
+  background: #f3e5f5;
+  color: #ba68c8 !important;
+}
+.card-fact-sheet {background: #f3e5f5 !important; border: 1px solid #e1bee7 !important;}
+.card-fact-sheet h2 {color: #6a1b9a !important;}
+.card-fact-sheet .card-tag-header {color: #7b1fa2;}
+.card-fact-sheet .resource-tag span {background: #ab47bc;}
+.resource-count.fact-sheet {color: #7b1fa2;}
+.resource-fact-sheets .resource-term {background: #ba68c8;}
+.resource-fact-sheets .resource-term a {color:#f3e5f5 !important;}
+.resource-fact-sheets .resource-tag span {background: #ab47bc;}
+.resource-fact-sheets .card-tag-header {color: #ab47bc;}
+
+/* posts */
+.post .entry-title {font-size:2em !important;}
+
+.site-content {padding-top:0 !important;}
+.site-content .wrap {padding-top: 2em !important;}
+.entry-header {margin-bottom: 1em !important;}
+
+.clearfix:after {
+   content: ".";
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+@media screen and (min-width: 30em) {
+  .page-one-column .panel-content .wrap {
+      max-width: 1000px;
+
+  }
+}

@@ -110,6 +110,10 @@ float:left;
 .resource-fact-sheets .resource-term a {color:#f3e5f5 !important;}
 .resource-fact-sheets .resource-tag span {background: #ab47bc;}
 .resource-fact-sheets .card-tag-header {color: #ab47bc;}
+.resource-fact-sheet .resource-term {background: #ba68c8;}
+.resource-fact-sheet .resource-term a {color:#f3e5f5 !important;}
+.resource-fact-sheet .resource-tag span {background: #ab47bc;}
+.resource-fact-sheet .card-tag-header {color: #ab47bc;}
 
 
 .homepage-card.resource.card-research_articles_reports_and_datasets {

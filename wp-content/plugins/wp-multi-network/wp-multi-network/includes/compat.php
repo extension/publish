@@ -9,6 +9,19 @@
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
 
+if ( ! function_exists( 'is_global_admin' ) ) :
+	/**
+	 * Can the current user edit all networks?
+	 *
+	 * @since 2.2.0
+	 *
+	 * @return boolean
+	 */
+	function is_global_admin() {
+		return (bool) apply_filters( 'is_global_admin', is_super_admin() );
+	}
+endif;
+
 if ( ! function_exists( 'wp_get_scheme' ) ) :
 /**
  * Return the scheme in use based on is_ssl()
@@ -170,6 +183,6 @@ function wp_get_main_network() {
 	}
 
 	// Return main network ID
-	return wp_get_network( get_main_network_id() );
+	return get_network( get_main_network_id() );
 }
 endif;

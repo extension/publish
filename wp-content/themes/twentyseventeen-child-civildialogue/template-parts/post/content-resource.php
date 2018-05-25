@@ -28,18 +28,6 @@
 		?>
 	</header><!-- .entry-header -->
 
-  <?php
-  $posttags = get_the_tags();
-  if ($posttags) {
-
-    echo '<div class="resource-post-tags clearfix"><p class="card-tag-header">Keywords</p>';
-    echo '<ul class="resource-tags">';
-    foreach($posttags as $tag) {
-      echo '<li class="resource-tag"><span>' . $tag->name . '</span></li>';
-    }
-    echo '</ul></div>';
-  }
-  ?>
 
   <?php
   // $post_target_audience_terms = get_the_tags();
@@ -54,6 +42,22 @@
     echo '</ul></div>';
   }
   ?>
+
+  
+  <?php
+  $posttags = get_the_tags();
+  if ($posttags) {
+
+    echo '<div class="resource-post-tags clearfix"><p class="card-tag-header">Keywords</p>';
+    echo '<ul class="resource-tags">';
+    foreach($posttags as $tag) {
+      echo '<li class="resource-tag"><span><a href="' . get_term_link($tag) . '">' . $tag->name . '</a></span></li>';
+    }
+    echo '</ul></div>';
+  }
+  ?>
+
+
 
 	<?php if ( '' !== get_the_post_thumbnail() && ! is_single() ) : ?>
 		<div class="post-thumbnail">

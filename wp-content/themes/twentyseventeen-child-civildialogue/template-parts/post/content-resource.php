@@ -16,10 +16,6 @@
 
 	<header class="entry-header">
 		<?php
-    $term_list = wp_get_post_terms($post->ID, 'resource', array("fields" => "all"));
-
-    echo "<div class='resource-term resource-" . $term_list[0]->slug . "'>" . get_the_term_list( $post->ID, 'resource', '', ', ' ) . "</div>";
-
 
 		if ( 'post' === get_post_type() ) {
 			echo '<div class="entry-meta">';
@@ -53,7 +49,7 @@
     echo '<div class="resource-post-tags clearfix"><p class="card-tag-header">Target Audiences</p>';
     echo '<ul class="resource-tags">';
     foreach($post_target_audience_term_list as $tag) {
-      echo '<li class="resource-tag"><span>' . $tag->name . '</span></li>';
+      echo '<li class="resource-tag"><span><a href="' . get_term_link($tag) . '">' . $tag->name . '</a></span></li>';
     }
     echo '</ul></div>';
   }

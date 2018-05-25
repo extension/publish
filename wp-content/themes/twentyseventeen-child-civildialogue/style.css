@@ -9,6 +9,27 @@ Version: 1.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
+:root {
+  --lightest-primary-resource-1: #e0f7fa;
+  --light-primary-resource-1: #b2ebf2;
+  --primary-resource-1: #4dd0e1;
+  --dark-primary-resource-1: #0097a7;
+
+  --lightest-primary-resource-2: #f3e5f5;
+  --light-primary-resource-2: #ce93d8;
+  --primary-resource-2: #ab47bc;
+  --dark-primary-resource-2: #7b1fa2;
+
+  --lightest-primary-resource-3: #fff3e0;
+  --light-primary-resource-3: #ffcc80;
+  --primary-resource-3: #fb8c00;
+  --dark-primary-resource-3: #e65100;
+
+  --lightest-primary-resource-4: #e3f2fd;
+  --light-primary-resource-4: #90caf9;
+  --primary-resource-4: #42a5f5;
+  --dark-primary-resource-4: #1565c0;
+}
 
 
 
@@ -54,22 +75,24 @@ float:left;
 .flex-container .card {
   box-shadow: 2px 2px 6px #999;
   transition: background-color 0.5s ease;
-  background: #e0f7fa;
+  background: #f5f5f5;
   padding: 1em;
   margin: 10px;
   width: 30%;
   height: 250px;
   height: auto;
-  border: 1px solid #b2ebf2;
+  border: 1px solid #ccc;
    /* flex-grow: 1;  */
   /* line-height: 150px; */
 }
 
 .resource-category-overview {font-size:1.2em;}
-.card-tag-header {margin:0 0 5px; font-size:.8em; font-weight:600; color: #00acc1;}
+.card-tag-header {margin:0 0 5px; font-size:.8em; font-weight:600;}
 .resource-tags {margin:0 0; list-style:none;}
-.resource-tag span {background: #4dd0e1; margin-right:10px; color: #fff; padding:2px 6px; font-size:.9em; border-radius: 10px;}
-.card h2{font-size:1.2em; color:#00838f; font-weight:600; flex: 1;}
+
+.resource-tag span {background: #999; margin-right:10px; color: #fff; padding:2px 6px; font-size:.9em; border-radius: 10px;}
+.resource-tag span a {color:#fff;}
+.card h2 {font-size:1.2em; font-weight:600; flex: 1;}
 .card p { font-size:.9em;}
 .card:hover {
   background:#fff;
@@ -82,12 +105,49 @@ float:left;
 
 
 
-.resource-count {
-  text-align:center;
-  font-size:36px; font-weight:600; color:#0097a7;}
 
-.resource-term {font-size:1.4em !important; background: #4dd0e1; padding:8px 10px; margin-bottom:1em; color:#fff !important;}
-.resource-term a {color:#e0f7fa !important;}
+.resource-count {text-align:center;font-size:36px; font-weight:600;}
+.resource-term {font-size:1.4em !important; padding:8px 10px; margin-bottom:1em; color:#fff !important;}
+.resource-term a {color:#fff;}
+
+/* Resource Colors
+***************************************************/
+.resource-curriculum-or-guide.resource-count {color: var(--dark-primary-resource-1);}
+.resource-curriculum-or-guide.card,
+.resource-curriculum-or-guide.homepage-card {background: var(--lightest-primary-resource-1) !important; border: 1px solid var(--primary-resource-1) !important;}
+.resource-curriculum-or-guide.card h2 {color: var(--dark-primary-resource-1);}
+.resource-curriculum-or-guide .card-tag-header {color: var(--primary-resource-1);}
+.resource-curriculum-or-guide .resource-tag span {background: var(--primary-resource-1);}
+.resource-curriculum-or-guide .resource-term {background: var(--primary-resource-1);}
+
+.resource-fact-sheets.resource-count  {color: var(--dark-primary-resource-2);}
+.resource-fact-sheets.card,
+.resource-fact-sheets.homepage-card
+ {background: var(--lightest-primary-resource-2) !important; border: 1px solid var(--light-primary-resource-2) !important;}
+.resource-fact-sheets.card h2 {color: var(--dark-primary-resource-2);}
+.resource-fact-sheets .card-tag-header {color: var(--primary-resource-2);}
+.resource-fact-sheets .resource-tag span {background: var(--primary-resource-2);}
+.resource-fact-sheets .resource-term {background: var(--primary-resource-2);}
+
+.resource-research-article-or-report.resource-count  {color: var(--dark-primary-resource-3);}
+.resource-research-article-or-report.card,
+.resource-research-article-or-report.homepage-card {background: var(--lightest-primary-resource-3) !important; border: 1px solid var(--light-primary-resource-3) !important;}
+.resource-research-article-or-report.card h2 {color: var(--dark-primary-resource-3);}
+.resource-research-article-or-report .card-tag-header {color: var(--primary-resource-3);}
+.resource-research-article-or-report .resource-tag span {background: var(--primary-resource-3);}
+.resource-research-article-or-report .resource-term {background: var(--primary-resource-3);}
+
+.resource-repository-or-website.resource-count  {color: var(--dark-primary-resource-4);}
+.resource-repository-or-website.card,
+.resource-repository-or-website.homepage-card {background: var(--lightest-primary-resource-4) !important; border: 1px solid var(--light-primary-resource-4) !important;}
+.resource-repository-or-website.card h2 {color: var(--dark-primary-resource-4);}
+.resource-repository-or-website .card-tag-header {color: var(--primary-resource-4);}
+.resource-repository-or-website .resource-tag span {background: var(--primary-resource-4);}
+.resource-repository-or-website .resource-term {background: var(--primary-resource-4);}
+
+
+
+/* .resource-term a {color:#e0f7fa !important;} */
 .resource-post .post .entry-header {margin-bottom:0 !important;}
 .resource-post .post .entry-title {margin-bottom:0;}
 .resource-post-tags {margin-bottom:1em;}
@@ -95,25 +155,25 @@ float:left;
 
 
 /* Fact sheet */
-.homepage-card.resource.card-fact_sheet {
+/* .homepage-card.resource.card-fact_sheet {
   border:2px solid #e1bee7 !important;
   background: #f3e5f5;
-}
-.homepage-card.resource.card-fact_sheet a {color: #ba68c8 !important;}
+} */
+/* .homepage-card.resource.card-fact_sheet a {color: #ba68c8 !important;} */
 
 .card-fact-sheet {background: #f3e5f5 !important; border: 1px solid #e1bee7 !important;}
 .card-fact-sheet h2 {color: #6a1b9a !important;}
-.card-fact-sheet .card-tag-header {color: #7b1fa2;}
-.card-fact-sheet .resource-tag span {background: #ab47bc;}
-.resource-count.fact-sheet {color: #7b1fa2;}
-.resource-fact-sheets .resource-term {background: #ba68c8;}
-.resource-fact-sheets .resource-term a {color:#f3e5f5 !important;}
-.resource-fact-sheets .resource-tag span {background: #ab47bc;}
-.resource-fact-sheets .card-tag-header {color: #ab47bc;}
-.resource-fact-sheet .resource-term {background: #ba68c8;}
-.resource-fact-sheet .resource-term a {color:#f3e5f5 !important;}
-.resource-fact-sheet .resource-tag span {background: #ab47bc;}
-.resource-fact-sheet .card-tag-header {color: #ab47bc;}
+/* .card-fact-sheet .card-tag-header {color: #7b1fa2;} */
+/* .card-fact-sheet .resource-tag span {background: #ab47bc;} */
+/* .resource-fact-sheets .resource-count {color: #7b1fa2;} */
+/* .resource-fact-sheets .resource-term {background: #ba68c8;} */
+/* .resource-fact-sheets .resource-term a {color:#f3e5f5 !important;} */
+/* .resource-fact-sheets .resource-tag span {background: #ab47bc;} */
+/* .resource-fact-sheets .card-tag-header {color: #ab47bc;}
+.resource-fact-sheet .resource-term {background: #ba68c8;} */
+/* .resource-fact-sheet .resource-term a {color:#f3e5f5 !important;} */
+/* .resource-fact-sheet .resource-tag span {background: #ab47bc;} */
+/* .resource-fact-sheet .card-tag-header {color: #ab47bc;} */
 
 
 .homepage-card.resource.card-research_articles_reports_and_datasets {
@@ -123,13 +183,13 @@ float:left;
 .homepage-card.resource.card-research_articles_reports_and_datasets a {color: #f57c00 !important;}
 .card-research-article-or-report {background: #fff3e0 !important; border: 1px solid #ffcc80 !important;}
 .card-research-article-or-report h2 {color: #e65100 !important;}
-.card-research-article-or-report .card-tag-header {color: #f57c00;}
+/* .card-research-article-or-report .card-tag-header {color: #f57c00;} */
 .card-research-article-or-report .resource-tag span {background: #fb8c00;}
 .resource-count.research-article-or-report {color: #f57c00;}
-.resource-research-article-or-report .resource-term {background: #ba68c8;}
+/* .resource-research-article-or-report .resource-term {background: #ba68c8;}
 .resource-research-article-or-report .resource-term a {color:#f3e5f5 !important;}
-.resource-research-article-or-report .resource-tag span {background: #ab47bc;}
-.resource-research-article-or-report .card-tag-header {color: #ab47bc;}
+.resource-research-article-or-report .resource-tag span {background: #ab47bc;} */
+/* .resource-research-article-or-report .card-tag-header {color: #ab47bc;} */
 
 
 
@@ -140,6 +200,8 @@ float:left;
 }
 .homepage-card.resource.card-resource_repositories_and_websites a {color: #1565c0 !important;}
 
+
+#custom_archive .taxonomy-title {font-size:2em !important; font-weight:500;}
 
 /* posts */
 .post .entry-title {font-size:2em !important;}

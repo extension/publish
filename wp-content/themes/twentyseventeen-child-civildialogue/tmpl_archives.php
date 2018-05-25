@@ -1,11 +1,12 @@
 <?php
-/* Template Name: Archive Page Custom */
+/* Template Name: Resource Card Gallery Template  */
 
 get_header(); ?>
 
 <div class="wrap">
 	<div id="custom_archive" class="content-area">
 		<main id="main" class="site-main" role="main">
+      <!-- tmpl_archives.php -->
 			<?php
 			while ( have_posts() ) : the_post();
 
@@ -13,52 +14,44 @@ get_header(); ?>
 
 			endwhile; // End of the loop.
 
-      $categories = get_the_category();
-      $page_category = $categories[0]->slug;
+      // $categories = get_the_category();
+      // $page_category = $categories[0]->slug;
+      $term_list = wp_get_post_terms($post->ID, 'resource', array("fields" => "all"));
+      $term = $term_list[0]->slug;
+      // echo $term;
 
-      $how_many_last_posts = intval(get_post_meta($post->ID, 'archived-posts-no', true));
-      if($how_many_last_posts > 200 || $how_many_last_posts < 2) $how_many_last_posts = 100;
-      $args = array( 'posts_per_page' => 50, 'category_name' => $page_category, 'orderby'=> 'title', 'order' => 'ASC' );
-      $wp_query = new WP_Query($args);
+      // $how_many_last_posts = intval(get_post_meta($post->ID, 'archived-posts-no', true));
+      // if($how_many_last_posts > 200 || $how_many_last_posts < 2) $how_many_last_posts = 100;
 
-      if($wp_query->have_posts()) {
-        echo '<h3 class="resource-count ' . $page_category . '">' .  $wp_query->found_posts . ' Resources</h3>';
-        echo '<div class="flex-container">';
-        while($wp_query->have_posts()) {
-          $wp_query->the_post();
-          ?>
-          <div class="card card-<?php echo $page_category; ?>">
-          <a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+      if ($term) {
+        // echo "<br/>has term";
+        $args = array(
+          'posts_per_page' => 50,
+          'tax_query' => array(
+              array(
+                  'taxonomy' => 'resource', // the custom vocabulary
+                  'field'    => 'slug',
+                  'terms'    => $term,      // provide the term slugs
+              )
+            ),
+            'post_type' => 'post',
+            'orderby'=> 'title', 'order' => 'ASC'
+        );
+        $post_query = new WP_Query($args);
 
-            <h2><?php the_title(); ?></h2></a>
-            <p><?php echo excerpt(24); ?></p>
-            <?php
-              $posttags = get_the_tags();
-            if ($posttags) {
-              echo '<p class="card-tag-header">Keywords</p>';
-              echo '<ul class="resource-tags">';
-              foreach($posttags as $tag) {
-                echo '<li class="resource-tag"><span>' . $tag->name . '</span></li>';
-              }
-              echo '</ul>';
-            }
-            ?>
+        if($post_query->have_posts()) {
+          // echo "<br/>have_posts";
+          echo '<h3 class="resource-count resource-' . $term . '">' .  $post_query->found_posts . ' Resources</h3>';
+          echo '<div class="flex-container">';
+          while($post_query->have_posts()) {
+            $post_query->the_post();
+            get_template_part( 'template-parts/post/content', 'card' );
+          }
+          echo '</div>';
 
 
-          </div>
-          <?php
+          wp_reset_postdata();
         }
-        echo '</div>';
-
-        the_posts_pagination( array(
-  				'prev_text' => twentyseventeen_get_svg( array( 'icon' => 'arrow-left' ) ) . '<span class="screen-reader-text">' . __( 'Previous page', 'twentyseventeen' ) . '</span>',
-  				'next_text' => '<span class="screen-reader-text">' . __( 'Next page', 'twentyseventeen' ) . '</span>' . twentyseventeen_get_svg( array( 'icon' => 'arrow-right' ) ),
-  				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentyseventeen' ) . ' </span>',
-  			) );
-
-
-        wp_reset_postdata();
-
 
       }
       ?>

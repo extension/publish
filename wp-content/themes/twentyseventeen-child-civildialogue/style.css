@@ -120,14 +120,14 @@ float:left;
 .resource-curriculum-or-guide .resource-tag span {background: var(--primary-resource-1);}
 .resource-curriculum-or-guide .resource-term {background: var(--primary-resource-1);}
 
-.resource-fact-sheets.resource-count  {color: var(--dark-primary-resource-2);}
-.resource-fact-sheets.card,
-.resource-fact-sheets.homepage-card
+.resource-fact-sheet.resource-count  {color: var(--dark-primary-resource-2);}
+.resource-fact-sheet.card,
+.resource-fact-sheet.homepage-card
  {background: var(--lightest-primary-resource-2) !important; border: 1px solid var(--light-primary-resource-2) !important;}
-.resource-fact-sheets.card h2 {color: var(--dark-primary-resource-2);}
-.resource-fact-sheets .card-tag-header {color: var(--primary-resource-2);}
-.resource-fact-sheets .resource-tag span {background: var(--primary-resource-2);}
-.resource-fact-sheets .resource-term {background: var(--primary-resource-2);}
+.resource-fact-sheet.card h2 {color: var(--dark-primary-resource-2);}
+.resource-fact-sheet .card-tag-header {color: var(--primary-resource-2);}
+.resource-fact-sheet .resource-tag span {background: var(--primary-resource-2);}
+.resource-fact-sheet .resource-term {background: var(--primary-resource-2);}
 
 .resource-research-article-or-report.resource-count  {color: var(--dark-primary-resource-3);}
 .resource-research-article-or-report.card,

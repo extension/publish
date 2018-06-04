@@ -63,4 +63,28 @@ add_filter( 'single_template', 'add_posttype_slug_template' );
  * Custom template tags for this theme.
  */
 require get_stylesheet_directory() . '/inc/template-tags.php';
+
+
+
+function list_terms_custom_taxonomy( $atts ) {
+
+  extract( shortcode_atts( array(
+    'custom_taxonomy' => ''
+  ), $atts ) );
+
+  // arguments for function wp_list_categories
+  $args = array(
+    taxonomy => $custom_taxonomy,
+    title_li => ''
+  );
+
+  echo '<ul>';
+  echo wp_list_categories($args);
+  echo '</ul>';
+}
+add_shortcode( 'ct_terms', 'list_terms_custom_taxonomy' );
+
+//Allow Text widgets to execute shortcodes
+// add_filter('widget_text', 'do_shortcode');
+
 ?>

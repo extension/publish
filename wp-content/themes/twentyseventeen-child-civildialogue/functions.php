@@ -77,10 +77,12 @@ function list_terms_custom_taxonomy( $atts ) {
     taxonomy => $custom_taxonomy,
     title_li => ''
   );
-
-  echo '<ul>';
-  echo wp_list_categories($args);
-  echo '</ul>';
+  ob_start();
+  $output .= '<ul>';
+  $output .= wp_list_categories($args);
+  $output .= '</ul>';
+  $output .= ob_get_clean();
+  return $output;
 }
 add_shortcode( 'ct_terms', 'list_terms_custom_taxonomy' );
 

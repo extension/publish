@@ -1899,7 +1899,7 @@ div[class*="simplesocialbuttons-float"].simplesocialbuttons.simplesocial-simple-
 .simplesocialbuttons.simplesocial-flat-button-border button.simplesocial-gplus-share .ssb_counter{
   color: #db4437;
 }
-.simplesocialbuttons.simplesocial-flat-button-border button:not(.simplesocial-whatsapp-share):not(.simplesocial-viber-share):not(.simplesocial-msng-share):not(.simplesocial-email-share):not(.simplesocial-print-share){
+.simplesocialbuttons.simplesocial-flat-button-border.ssb_counter-activate button:not(.simplesocial-whatsapp-share):not(.simplesocial-viber-share):not(.simplesocial-msng-share):not(.simplesocial-email-share):not(.simplesocial-print-share){
   padding-right: 50px;
   position: relative;
 }

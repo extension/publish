@@ -166,7 +166,8 @@ function ssb_fetch_shares_via_curl_multi( $data, $options = array() ) {
 	  }
 
     foreach ( $stats as $social_name => $counts ) {
-      if ( 'totalshare' == $social_name  || 'fblike' == $social_name || 'viber' == $social_name || 'whatsapp' == $social_name ) { continue; }
+      if ( 'totalshare' == $social_name || 'viber' == $social_name || 'fblike' == $social_name || 'whatsapp' == $social_name || 'print' == $social_name || 'email' == $social_name || 'messenger' == $social_name ) 
+      { continue; }
       $stats_counts  = call_user_func( 'ssb_format_' . $social_name . '_response', $counts );
 	    $new_counts = $stats_counts + $networks[ $social_name];
 	    $stats_result[ $social_name ] = $new_counts;
@@ -202,7 +203,8 @@ function ssb_fetch_shares_via_curl_multi( $data, $options = array() ) {
 		$stats_result = array();
 		$networks = array();
 		foreach ( $stats as $social_name => $counts ) {
-			if ( 'totalshare' == $social_name  || 'fblike' == $social_name || 'viber' == $social_name || 'whatsapp' == $social_name ) { continue; }
+      if ( 'totalshare' == $social_name || 'viber' == $social_name || 'fblike' == $social_name || 'whatsapp' == $social_name || 'print' == $social_name || 'email' == $social_name || 'messenger' == $social_name )
+         { continue; }
 			$stats_counts  = call_user_func( 'ssb_format_' . $social_name . '_response', $counts );
 			 $networks[ $social_name] = $stats_counts;
 		}

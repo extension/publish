@@ -4,7 +4,7 @@ Donate link: https://wpbrigade.com/
 Tags: Social share, Social buttons, Whatsapp, Viber, LinkedIn, facebook, google, twitter, pinterest, plus one
 Requires at least: 4.0
 Tested up to: 4.9
-Stable tag: 2.0.15
+Stable tag: 2.0.16
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -131,7 +131,7 @@ counter = true or false
 align = left or right or centered
 order = googleplus,twitter,pinterest,fbshare,linkedin,reddit,whatsapp,viber,fblike
 theme = theme1 or theme2 or theme3 or theme4  or Flat or Circle or Official
-
+like_button_size = small(default), large  
 == Screenshots ==
 
 1. Drag and Drop Social media buttons.
@@ -146,11 +146,16 @@ theme = theme1 or theme2 or theme3 or theme4  or Flat or Circle or Official
 
 == Upgrade Notice ==
 
-= 2.0.15 =
+= 2.0.16 =
 * Please upgrade immediately. Releasing New features, few bugfixes and improvements.
 
 
 == Changelog ==
+
+= 2.0.16 - 2018-07-09 =
+* Improvement: Like button size parameter added in short code.
+* Bug Fix: Illegal offset string.
+* Bug Fix: Reddit Api  Invalid argument supplied for foreach()
 
 = 2.0.15 - 2018-06-05 =
 * New Feature: Button show on excerpt content.

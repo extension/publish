@@ -4,8 +4,8 @@ require 'capistrano/ext/multistage'
 
 require 'capatross'
 
-set :application, "blogs"
-set :repository,  "git@github.com:extension/blogs.git"
+set :application, "publish"
+set :repository,  "git@github.com:extension/publish.git"
 set :branch, "master"
 set :scm, "git"
 set :user, "pacecar"
